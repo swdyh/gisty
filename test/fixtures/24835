@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    
+      <title>gist: 24835 &mdash; GitHub</title>
+    
+    <link href="/stylesheets/facebox.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/gist/screen.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="/stylesheets/pygment_trac.css" media="screen" rel="stylesheet" type="text/css" />
+    
+    
+            
+  
+  </head>
+
+  <body>
+    <div id="main">
+      <div id="header" class="">
+        <div class="site">
+          <div class="logo">
+            <a href="/"><img src="/images/modules/header/logo_gist.png" alt="git-hub" /></a>
+          </div>
+          
+            <div class="actions">
+              <a href="/">New</a> 
+              <a href="/gists">All Gists</a> 
+              <a href="/login?return_to=gist">Login</a>
+              <a href="http://github.com/signup?return_to=gist">Signup for a GitHub Account</a>
+            </div>
+          
+        </div>
+      </div>
+      
+    <div class="site">
+      
+<div id="gist_data">
+  <div id="repos">
+    <div class="repo public">    
+      <div class="title">
+        <div class="path">
+          gist: 24835
+
+          
+            <a href="/gists/24835/download"><img alt="Download_button" border="0" class="button" src="/images/modules/repos/download_button.png?9eb59f95332165fee30c4fdb22748a8fe02eb123" /></a>
+          
+
+          
+            
+            <a href="http://github.com/signup"><img alt="fork" class="button" src="/images/modules/repos/fork_button.png?9eb59f95332165fee30c4fdb22748a8fe02eb123" /></a> 
+          
+        </div>
+        
+        
+          <div class="security public_security" style="">
+            <a href="#public_repo" rel="facebox"><img src="/images/icons/public.png" alt="public" /></a>
+          </div>
+        
+        
+        <div id="private_repo" class="hidden">
+          This gist is private.  
+          All pages are served over SSL and all pushing and pulling is done over SSH.
+          No one may fork, clone, or view it unless they are given this private URL.
+          <br/>
+          <br/>
+          Every gist with this icon (<img src="/images/icons/private.png" alt="private" />) is private.
+        </div>
+        <div class="security public_security" style="display:none">
+          <a href="#public_repo" rel="facebox"><img src="/images/icons/public.png" alt="public" /></a>
+        </div>
+        <div id="public_repo" class="hidden">
+          This gist is public.
+          Anyone may fork, clone, or view it.
+          <br/>
+          <br/>
+          Every repository with this icon (<img src="/images/icons/public.png" alt="public" />) is public.
+        </div>
+      </div>
+      
+      <div class="meta">
+        <table>
+          
+
+          
+            <tr>
+              <td class="label">Public Clone URL:</td>
+              <td>
+                <a rel="#git-clone" class="git_url_facebox" href="git://gist.github.com/24835.git">git://gist.github.com/24835.git</a>
+                <div id="git-clone" style="display:none; min-width:500px">
+                  Give this clone URL to anyone.
+                  <br/>
+
+                  <code>git clone git://gist.github.com/24835.git gist-24835</code>
+                </div>
+              </td>
+            </tr>
+          
+          
+          
+          
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div id="files">
+    
+    
+    
+      
+        
+      <div class="file">
+  <div class="meta">
+    <div class="info">
+      <span>delicious_hide_do_not_share.user.css</span>
+    </div>
+    <div class="actions">
+      
+      <div id="gist-embed" style="display:inline;">
+        <a href="#" id="gist-embed-link">embed</a>
+        <input id="gist-embed-box" type="text" size="25" value='<script src="http://gist.github.com/24835.js"></script>' style="display:none;"/>
+      </div>
+      
+      <a href="/raw/24835/43a86b56175c85f452af3fca4ce0df0997ff3bc2">raw</a>
+    </div>
+  </div>
+  
+  <div class="data syntax">
+    
+      <table cellpadding="0" cellspacing="0">
+        <tr>
+          <td>
+            
+            <pre class="line_numbers">
+<span id="LID1" rel="#L1">1</span>
+<span id="LID2" rel="#L2">2</span>
+<span id="LID3" rel="#L3">3</span>
+<span id="LID4" rel="#L4">4</span>
+<span id="LID5" rel="#L5">5</span>
+<span id="LID6" rel="#L6">6</span>
+<span id="LID7" rel="#L7">7</span>
+</pre>
+          </td>
+          <td width="100%">
+            
+            
+              <div class="highlight"><pre><div class="line" id="LC1"><span class="k">@namespace</span> <span class="nt">url</span><span class="o">(</span><span class="nt">http</span><span class="o">://</span><span class="nt">www</span><span class="nc">.w3.org</span><span class="o">/</span><span class="nt">1999</span><span class="o">/</span><span class="nt">xhtml</span><span class="o">)</span><span class="p">;</span></div><div class="line" id="LC2">&nbsp;</div><div class="line" id="LC3"><span class="k">@-moz-document</span> <span class="nt">domain</span><span class="o">(</span><span class="s2">&quot;delicious.com&quot;</span><span class="o">)</span> <span class="p">{</span></div><div class="line" id="LC4">&nbsp;&nbsp;<span class="nc">.share</span> <span class="p">{</span></div><div class="line" id="LC5">&nbsp;&nbsp;&nbsp;&nbsp;<span class="k">display</span><span class="o">:</span> <span class="k">none</span> <span class="cp">!important</span><span class="p">;</span></div><div class="line" id="LC6">&nbsp;&nbsp;<span class="p">}</span></div><div class="line" id="LC7"><span class="p">}</span></div></pre></div>
+            
+          </td>
+        </tr>
+      </table>
+    
+  </div>
+
+
+</div>
+
+          
+
+     <!-- cache end -->
+
+    
+    
+  </div>
+</div> <!-- gist_data -->
+
+<div id="gist_meta">
+  
+  
+  
+  <div id="owner">
+    <h3>Owner</h3>
+    
+      <a href="#"><a href="/swdyh">swdyh</a></a>
+    
+  </div>
+
+  
+
+  
+	
+  
+  
+  <div id="revisions">
+    <h3>Revisions</h3>
+    <ul>
+      
+        
+        
+        <li class="current">
+          <img src="/images/modules/gist/dot_green.png" alt=""/><img src="/images/modules/gist/dot_green.png" alt=""/><img src="/images/modules/gist/dot_green.png" alt=""/><img src="/images/modules/gist/dot_green.png" alt=""/><img src="/images/modules/gist/dot_green.png" alt=""/><img src="/images/modules/gist/dot_green.png" alt=""/><img src="/images/modules/gist/dot_gray.png" alt=""/>
+          <a href="http://gist.github.com/24835/a48c0b23c8fe5fe879ba2c21f38deb1f224d43b4" class="id">a48c0b</a>
+
+          
+            <a href="/swdyh" class="author">swdyh</a>
+          
+          <span class="date"><abbr class="relatize" title="2008-11-14 01:20:54">Fri Nov 14 01:20:54 -0800 2008</abbr></span>
+        </li>
+      
+    </ul>
+  </div>
+  
+</div> <!-- gist_meta -->
+
+    </div> <!-- site -->
+
+    <div class="push"></div>
+
+    </div>
+    
+    <div id="footer">
+      <div class="site">
+        <div class="info">
+          <div style="float: left; margin-right: 2em; margin-top: -.6em;">
+            <a href="http://github.com/">
+              <img src="/images/modules/header/logo_white.png" alt="GitHub" />
+            </a>
+          </div>
+          <div class="links" style="float: left; width: 18em;">
+            <a href="http://github.com/blog"><strong>The Github Blog</strong></a> |
+            <a href="http://support.github.com/">Support</a> |
+            <a href="http://github.com/contact">Contact Us</a>
+          </div>
+          <div class="company">
+            <span id="_rrt" title="0.07346s from gist.github.com">It's</span>
+            <a href="http://logicalawesome.com/">Logical Awesome</a> | &copy;2008
+          </div>
+        </div>
+        <div class="sponsor">
+          <a href="http://engineyard.com">Hosting provided by</a>&nbsp;
+          <a href="http://engineyard.com">
+            <img src="/images/modules/footer/engine_yard_logo.gif" alt="Hosted by Engine Yard" />
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>

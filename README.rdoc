@@ -1,0 +1,38 @@
+
+= gisty
+
+
+== Description
+
+	yet another command line client for gist
+
+== Installation
+
+=== Gem Installation
+
+	gem install nokogiri
+	gem install swdyh-gisty
+
+set environment variable GISTY_DIR.
+example .zshrc
+
+	export GISTY_DIR="$HOME/dev/gists"    
+
+== Features/Problems
+
+
+== Synopsis
+
+	gisty list                          show local list.
+	gisty post file1 file2 ...          post new gist.
+	gisty private_post file1 file2 ...  post new private gist.
+	gisty sync                          sync remote gist.
+	gisty sync_delete                   sync remote gist. delete local gist if remote gist was deleted.
+	gisty version                       show gisty version
+	gisty help                          show help
+
+== Copyright
+
+Author::    swdyh <http://mailhide.recaptcha.net/d?k=01AhB7crgrlHptVaYRD0oPwA==&c=L_iqOZrGmo6hcGpPTFg1QYnjr-WpAStyQ4Y8ShfgOHs=>
+Copyright:: Copyright (c) 2008 swdyh
+License::   MIT
