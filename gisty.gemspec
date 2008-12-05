@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email = %q{http://mailhide.recaptcha.net/d?k=01AhB7crgrlHptVaYRD0oPwA==&c=L_iqOZrGmo6hcGpPTFg1QYnjr-WpAStyQ4Y8ShfgOHs=}
   s.executables = ["gisty"]
   s.extra_rdoc_files = ["README.rdoc"]
-  s.files = ["README.rdoc", "Rakefile", "bin/gisty", "doc/classes", "doc/created.rid", "doc/files", "doc/files/README_rdoc.html", "doc/fr_class_index.html", "doc/fr_file_index.html", "doc/fr_method_index.html", "doc/index.html", "doc/rdoc-style.css", "test/fixtures", "test/fixtures/#24835#", "test/fixtures/24835", "test/fixtures/30119", "test/fixtures/bar.user.js", "test/fixtures/foo.user.js", "test/fixtures/mine_login_foo_token_bar", "test/fixtures/mine_page_1_login_foo_token_bar", "test/fixtures/mine_page_2_login_foo_token_bar", "test/fixtures/swdyh", "test/fixtures/swdyh_page_4", "test/gisty_test.rb", "test/test_helper.rb", "lib/gisty.rb"]
+  s.files = ["README.rdoc", "Rakefile", "bin/gisty", "test/fixtures", "test/fixtures/24835", "test/fixtures/30119", "test/fixtures/bar.user.js", "test/fixtures/foo.user.js", "test/fixtures/mine_login_foo_token_bar", "test/fixtures/mine_page_1_login_foo_token_bar", "test/fixtures/mine_page_2_login_foo_token_bar", "test/fixtures/swdyh", "test/fixtures/swdyh_page_4", "test/gisty_test.rb", "test/test_helper.rb", "lib/gisty.rb"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/swdyh/gisty/tree/master}
   s.rdoc_options = ["--title", "gisty documentation", "--charset", "utf-8", "--opname", "index.html", "--line-numbers", "--main", "README.rdoc", "--inline-source", "--exclude", "^(examples|extras)/"]

@@ -10,13 +10,17 @@
 
 === Gem Installation
 
-	gem install nokogiri
-	gem install swdyh-gisty
+	sudo gem install nokogiri
+
+	gem sources -a http://gems.github.com (you only have to do this once)
+	sudo gem install swdyh-gisty
 
 set environment variable GISTY_DIR.
 example .zshrc
 
 	export GISTY_DIR="$HOME/dev/gists"    
+
+zsh command completion: http://github.com/swdyh/gisty/raw/master/_gisty
 
 == Features/Problems
 
