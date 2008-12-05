@@ -50,10 +50,12 @@ cmd :post do |fs|
   if fs.size > 0
     begin
       url = @g.create fs
+    rescue Gisty::InvalidFileException => e
+      puts "Error: invalid file"
     rescue Exception => e
-      puts 'error.'
+      puts "Error: #{e}"
     else
-      system "open #{url}"
+      system "open #{url}" if /darwin/ === RUBY_PLATFORM
       id = url.split('/').last
       @g.clone id
     end
@@ -65,9 +67,9 @@ cmd :private_post do |fs|
     begin
       url = @g.create fs, :private => true
     rescue Exception => e
-      puts 'error.'
+      puts "Error: #{e}"
     else
-      system "open #{url}"
+      system "open #{url}" if /darwin/ === RUBY_PLATFORM
       id = url.split('/').last
       @g.clone id
     end
@@ -76,9 +78,15 @@ end
 
 
 if ENV['GISTY_DIR']
-  @g = Gisty.new ENV['GISTY_DIR']
+  begin
+    @g = Gisty.new ENV['GISTY_DIR']
+  rescue Gisty::UnsetAuthInfoException => e
+    puts 'Error: set your api token.'
+    puts 'see Global Git Config at https://github.com/account'
+    exit
+  end
 else
-  puts "error: please set ENV['GISTY_DIR']"
+  puts "Error: please set ENV['GISTY_DIR']"
   exit
 end
 

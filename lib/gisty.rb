@@ -8,6 +8,12 @@ class Gisty
   VERSION  = '0.0.4'
   GIST_URL = 'http://gist.github.com/'
 
+  class UnsetAuthInfoException < Exception
+  end
+
+  class InvalidFileException < Exception
+  end
+
   def self.extract_ids url
     doc = Nokogiri::HTML open(url)
     doc.css('.file .info a').map { |i| i['href'].sub('/', '') }
@@ -25,7 +31,7 @@ class Gisty
 
   def initialize path, login = nil, token = nil
     @auth = (login && token) ? { :login => login, :token => token } : auth
-    raise 'auth error' if @auth[:login].nil? || @auth[:token].nil?
+    raise UnsetAuthInfoException if @auth[:login].nil? || @auth[:token].nil?
     @auth_query = "login=#{@auth[:login]}&token=#{@auth[:token]}"
     @dir  = Pathname.pwd.realpath.join path
     FileUtils.mkdir_p @dir unless @dir.exist?
@@ -113,7 +119,7 @@ class Gisty
 
   def build_params paths
     list = (Array === paths ? paths : [paths]).map { |i| Pathname.new i }
-    raise 'file error' if list.any?{ |i| !i.file? }
+    raise InvalidFileException if list.any?{ |i| !i.file? }
 
     params = {}
     list.each_with_index do |i, index|
