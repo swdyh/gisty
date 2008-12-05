@@ -118,9 +118,8 @@ class GistyTest < Test::Unit::TestCase
   end
 
   def test_build_params
-    g = Gisty.new @gisty_dir
     path = File.join('test', 'fixtures', 'foo.user.js')
-    params = g.build_params path
+    params = @gisty.build_params path
 
     assert_equal '.js', params['file_ext[gistfile1]']
     assert_equal 'foo.user.js', params['file_name[gistfile1]']
@@ -128,10 +127,9 @@ class GistyTest < Test::Unit::TestCase
   end
 
   def test_build_params_multi
-    g = Gisty.new @gisty_dir
     path1 = File.join('test', 'fixtures', 'foo.user.js')
     path2 = File.join('test', 'fixtures', 'bar.user.js')
-    params = g.build_params [path1, path2]
+    params = @gisty.build_params [path1, path2]
 
     assert_equal '.js', params['file_ext[gistfile1]']
     assert_equal 'foo.user.js', params['file_name[gistfile1]']
@@ -143,17 +141,14 @@ class GistyTest < Test::Unit::TestCase
 
   def test_create
     stub_post_form!
-    g = Gisty.new @gisty_dir
     path = File.join('test', 'fixtures', 'foo.user.js')
-    g.create(path)
+    @gisty.create path
   end
 
   def test_create_multi
-    stub_post_form!
-    g = Gisty.new @gisty_dir
     path1 = File.join('test', 'fixtures', 'foo.user.js')
     path2 = File.join('test', 'fixtures', 'bar.user.js')
-    g.create([path1, path2])
+    @gisty.create [path1, path2]
   end
 end
 

@@ -5,7 +5,7 @@ require 'rubygems'
 require 'nokogiri'
 
 class Gisty
-  VERSION  = '0.0.3'
+  VERSION  = '0.0.4'
   GIST_URL = 'http://gist.github.com/'
 
   def self.extract_ids url
@@ -25,6 +25,7 @@ class Gisty
 
   def initialize path, login = nil, token = nil
     @auth = (login && token) ? { :login => login, :token => token } : auth
+    raise 'auth error' if @auth[:login].nil? || @auth[:token].nil?
     @auth_query = "login=#{@auth[:login]}&token=#{@auth[:token]}"
     @dir  = Pathname.pwd.realpath.join path
     FileUtils.mkdir_p @dir unless @dir.exist?

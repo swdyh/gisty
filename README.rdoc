@@ -20,10 +20,18 @@ example .zshrc
 
 	export GISTY_DIR="$HOME/dev/gists"    
 
-zsh command completion: http://github.com/swdyh/gisty/raw/master/_gisty
+set global git config. see "Global Git Config" at https://github.com/account
+
+	git config --global github.user your_id
+	git config --global github.token your_token
+
+if you use zsh command completion, download this file to $fpath directory.
+http://github.com/swdyh/gisty/raw/master/_gisty
+
 
 == Features/Problems
 
+use API token with HTTP. at your own risk.
 
 == Synopsis
 
