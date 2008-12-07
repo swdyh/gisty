@@ -5,7 +5,7 @@ require 'rubygems'
 require 'nokogiri'
 
 class Gisty
-  VERSION   = '0.0.5'
+  VERSION   = '0.0.6'
   GIST_URL  = 'http://gist.github.com/'
   GISTY_URL = 'http://github.com/swdyh/gisty/tree/master'
 
@@ -100,13 +100,27 @@ class Gisty
     FileUtils.cd @dir do
       ids.each do |id|
         if File.exist? id
+#           FileUtils.cd id do
+#             c = "git pull"
+#             Kernel.system c
+#           end
+        else
+          c = "git clone git@gist.github.com:#{id}.git"
+          Kernel.system c
+        end
+      end
+    end
+  end
+
+  def pull_all
+    ids = local_ids
+    FileUtils.cd @dir do
+      ids.each do |id|
+        if File.exist? id
           FileUtils.cd id do
             c = "git pull"
             Kernel.system c
           end
-        else
-          c = "git clone git@gist.github.com:#{id}.git"
-          Kernel.system c
         end
       end
     end

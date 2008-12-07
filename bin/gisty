@@ -9,7 +9,7 @@ def cmd name
   @cmds[name.to_s] = Proc.new { |i| yield i }
 end
 
-cmd :aboutt do
+cmd :about do
   puts Gisty::AA
   puts
   puts 'version: ' + Gisty::VERSION
@@ -24,8 +24,9 @@ commands:
   gisty list                          show local list.
   gisty post file1 file2 ...          post new gist.
   gisty private_post file1 file2 ...  post new private gist.
-  gisty sync                          sync remote gist.
+  gisty sync                          sync remote gist. (clone all remote gist)
   gisty sync_delete                   sync remote gist. delete local gist if remote gist was deleted.
+  gisty pull_all                      pull all gist.
   gisty about                         show about gisty
   gisty help                          show help
   EOS
@@ -47,6 +48,12 @@ cmd :sync_delete do
   @g.sync true
   puts '---'
   puts 'sync finished.'
+end
+
+cmd :pull_all do
+  @g.pull_all
+  puts '---'
+  puts 'pull_all finished.'
 end
 
 cmd :post do |fs|
@@ -100,7 +107,7 @@ else
   if c
     c.call ARGV.last(ARGV.size - 1)
   else
-    puts '...'
+    puts 'unknown commands.'
   end
 end
 
