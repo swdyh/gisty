@@ -1,5 +1,5 @@
 #compdef gisty
 
-_arguments '1:first:(list help post sync_delete sync version private_post)' \
+_arguments '1:first:(list help post sync_delete sync about private_post)' \
            '*:tail:_files'
 

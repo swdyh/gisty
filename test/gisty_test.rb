@@ -108,14 +108,14 @@ class GistyTest < Test::Unit::TestCase
     assert ids.all? { |i| @gisty_dir.join(i).exist? }
   end
 
-  def test_sync_delete
-    id = '12345'
-    assert !@gisty.remote_ids.include?(id)
-    @gisty.clone id
-    assert @gisty_dir.join(id).exist?
-    @gisty.sync true
-    assert !@gisty_dir.join(id).exist?
-  end
+#   def test_sync_delete
+#     id = '12345'
+#     assert !@gisty.remote_ids.include?(id)
+#     @gisty.clone id
+#     assert @gisty_dir.join(id).exist?
+#     @gisty.sync true
+#     assert !@gisty_dir.join(id).exist?
+#   end
 
   def test_build_params
     path = File.join('test', 'fixtures', 'foo.user.js')

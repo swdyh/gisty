@@ -9,8 +9,11 @@ def cmd name
   @cmds[name.to_s] = Proc.new { |i| yield i }
 end
 
-cmd :version do
-  puts Gisty::VERSION
+cmd :aboutt do
+  puts Gisty::AA
+  puts
+  puts 'version: ' + Gisty::VERSION
+  puts 'url: ' + Gisty::GISTY_URL
 end
 
 cmd :help do
@@ -23,7 +26,7 @@ commands:
   gisty private_post file1 file2 ...  post new private gist.
   gisty sync                          sync remote gist.
   gisty sync_delete                   sync remote gist. delete local gist if remote gist was deleted.
-  gisty version                       show gisty version
+  gisty about                         show about gisty
   gisty help                          show help
   EOS
 end

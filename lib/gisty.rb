@@ -5,8 +5,9 @@ require 'rubygems'
 require 'nokogiri'
 
 class Gisty
-  VERSION  = '0.0.4'
-  GIST_URL = 'http://gist.github.com/'
+  VERSION   = '0.0.5'
+  GIST_URL  = 'http://gist.github.com/'
+  GISTY_URL = 'http://github.com/swdyh/gisty/tree/master'
 
   class UnsetAuthInfoException < Exception
   end
@@ -82,8 +83,14 @@ class Gisty
 
     if delete
       (local - remote).each do |id|
-        # puts "delete #{id}"
-        delete id
+        print "delete #{id}? [y/n]"
+        confirm = $stdin.gets.strip
+        if confirm == 'y' || confirm == 'yes'
+          puts "delete #{id}"
+          delete id
+        else
+          puts "skip #{id}"
+        end
       end
       ids = remote
     else
@@ -137,4 +144,16 @@ class Gisty
     end
     post params.merge(auth)
   end
+
+  # `figlet -f contributed/bdffonts/clb8x8.flf gisty`.gsub('#', 'm')
+  AA = <<-EOS
+            mm                mm             
+                              mm             
+  mmmmmm  mmmm      mmmmm   mmmmmm   mm  mm  
+ mm   mm    mm     mm         mm     mm  mm  
+ mm   mm    mm      mmmm      mm     mm  mm  
+  mmmmmm    mm         mm     mm      mmmmm  
+      mm  mmmmmm   mmmmm       mmm       mm  
+  mmmmm                               mmmm   
+  EOS
 end
