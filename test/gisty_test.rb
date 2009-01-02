@@ -72,6 +72,13 @@ class GistyTest < Test::Unit::TestCase
     assert urls.all? { |u| u.match(/page=\d/) }
   end
 
+  def test_map_page_urls
+    mapped = @gisty.map_page_urls do |u|
+      assert u.match(/page=\d/)
+    end
+    assert_equal 2, mapped.size
+  end
+
   def test_remote_ids
     ids = @gisty.remote_ids
     assert_equal 20, ids.size

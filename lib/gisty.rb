@@ -54,8 +54,21 @@ class Gisty
     urls
   end
 
+  def map_page_urls
+    result = []
+    base_url = GIST_URL.sub(/\/$/, '')
+    path = "/mine?page=1"
+    loop do
+      url = base_url + path + "&#{@auth_query}"
+      result << yield(url)
+      path = next_link(url)
+      break unless path
+    end
+    result
+  end
+
   def remote_ids
-    page_urls.map { |u| Gisty.extract_ids u }.flatten.uniq.sort
+    map_page_urls { |u| Gisty.extract_ids u }.flatten.uniq.sort
   end
 
   def clone id
