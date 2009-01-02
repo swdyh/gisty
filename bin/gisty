@@ -65,9 +65,9 @@ cmd :post do |fs|
     rescue Exception => e
       puts "Error: #{e}"
     else
-      system "open #{url}" if /darwin/ === RUBY_PLATFORM
       id = url.split('/').last
       @g.clone id
+      system "open #{url}" if /darwin/ === RUBY_PLATFORM
     end
   end
 end
