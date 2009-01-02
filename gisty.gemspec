@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gisty}
-  s.version = "0.0.8"
+  s.version = "0.0.9"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["swdyh"]
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
   s.email = %q{http://mailhide.recaptcha.net/d?k=01AhB7crgrlHptVaYRD0oPwA==&c=L_iqOZrGmo6hcGpPTFg1QYnjr-WpAStyQ4Y8ShfgOHs=}
   s.executables = ["gisty"]
   s.extra_rdoc_files = ["README.rdoc"]
-  s.files = ["README.rdoc", "Rakefile", "bin/gisty", "test/fixtures", "test/fixtures/24835", "test/fixtures/30119", "test/fixtures/bar.user.js", "test/fixtures/foo.user.js", "test/fixtures/mine_login_foo_token_bar", "test/fixtures/mine_page_1_login_foo_token_bar", "test/fixtures/mine_page_2_login_foo_token_bar", "test/fixtures/swdyh", "test/fixtures/swdyh_page_4", "test/gisty_test.rb", "test/test_helper.rb", "lib/gisty.rb"]
+  s.files = ["README.rdoc", "Rakefile", "bin/gisty", "test/fixtures", "test/fixtures/24835", "test/fixtures/30119", "test/fixtures/bar.user.js", "test/fixtures/foo.user.js", "test/fixtures/mine_login_foo_token_bar", "test/fixtures/mine_page_1_login_foo_token_bar", "test/fixtures/mine_page_2_login_foo_token_bar", "test/fixtures/mine_page_3_login_foo_token_bar", "test/fixtures/swdyh", "test/fixtures/swdyh_page_4", "test/gisty_test.rb", "test/test_helper.rb", "lib/gisty.rb"]
   s.has_rdoc = true
   s.homepage = %q{http://github.com/swdyh/gisty/tree/master}
   s.rdoc_options = ["--title", "gisty documentation", "--charset", "utf-8", "--opname", "index.html", "--line-numbers", "--main", "README.rdoc", "--inline-source", "--exclude", "^(examples|extras)/"]
