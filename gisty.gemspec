@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gisty}
-  s.version = "0.0.9"
+  s.version = "0.0.10"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["swdyh"]
-  s.date = %q{2009-01-02}
+  s.date = %q{2009-01-03}
   s.default_executable = %q{gisty}
   s.description = %q{yet another command line client for gist}
   s.email = %q{http://mailhide.recaptcha.net/d?k=01AhB7crgrlHptVaYRD0oPwA==&c=L_iqOZrGmo6hcGpPTFg1QYnjr-WpAStyQ4Y8ShfgOHs=}
@@ -27,8 +27,11 @@ Gem::Specification.new do |s|
     s.specification_version = 2
 
     if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+      s.add_runtime_dependency(%q<nokogiri>, [">= 1.0.0"])
     else
+      s.add_dependency(%q<nokogiri>, [">= 1.0.0"])
     end
   else
+    s.add_dependency(%q<nokogiri>, [">= 1.0.0"])
   end
 end
