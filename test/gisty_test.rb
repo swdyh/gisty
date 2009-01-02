@@ -61,8 +61,9 @@ class GistyTest < Test::Unit::TestCase
     assert_instance_of Gisty, @gisty
   end
 
-  def test_page_num
-    assert_equal 2, @gisty.page_num
+  def test_next_link
+    assert_equal '/mine?page=2', @gisty.next_link("http://gist.github.com/mine?page=1&login=foo&token=bar")
+    assert_nil @gisty.next_link("http://gist.github.com/mine?page=2&login=foo&token=bar")
   end
 
   def test_page_urls
@@ -73,7 +74,7 @@ class GistyTest < Test::Unit::TestCase
 
   def test_remote_ids
     ids = @gisty.remote_ids
-    assert_equal 19, ids.size
+    assert_equal 20, ids.size
     assert ids.include?('7205')
     assert ids.include?('bc82698ab357bd8bb433')
   end

@@ -11,6 +11,8 @@
     <link href="/stylesheets/gist/screen.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="/stylesheets/pygment_trac.css" media="screen" rel="stylesheet" type="text/css" />
     
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"></script>
+      <script src="http://assets1.github.com/javascripts/gist.js?366981d3fa18abe465a1292caaaf4c5a5a8425e9" type="text/javascript"></script>
     
     
   </head>
@@ -38,10 +40,137 @@
       
     <div class="site">
       <div id="gist_data">
-  <h2>Your Gists</h2>
+  
+  
+  
+  
+    <h2>Your Gists</h2>
 
-  <div id="files">
-    
+    <div id="files">
+      
+
+
+
+  <div class="file">
+    <div class="meta public inline-gravatar" style="padding-right:45px; background:#eaeaea url('http://www.gravatar.com/avatar/465e43442fc3604b4a7ad9c55bc52066?s=20&d=http%3A%2F%2Fgithub.com%2Fimages%2Fgravatars%2Fgravatar-20.png') no-repeat scroll 98.5% 50%;">
+      <div class="info">
+        <span><a href="/36121">gist: 36121</a></span>
+        <span></span>
+      </div>
+      <div class="right">
+        <span class="date">
+          <abbr class="relatize" title="2008-12-15 14:35:38">Mon Dec 15 14:35:38 -0800 2008</abbr>
+          
+        </span>
+        <br style="clear:both;"/>
+      </div>
+    </div>
+    <div class="data syntax">
+       
+       <table cellpadding="0" cellspacing="0">
+          <tr>
+            <td>
+<pre class="line_numbers">
+<span id="LID1" rel="#L1">1</span>
+<span id="LID2" rel="#L2">2</span>
+<span id="LID3" rel="#L3">3</span>
+</pre>
+            </td>
+            <td width="100%">
+              
+              
+              
+                <div class="highlight"><pre><div class="line" id="LC1"><span class="k">@namespace</span> <span class="nt">url</span><span class="o">(</span><span class="nt">http</span><span class="o">://</span><span class="nt">www</span><span class="nc">.w3.org</span><span class="o">/</span><span class="nt">1999</span><span class="o">/</span><span class="nt">xhtml</span><span class="o">)</span><span class="p">;</span></div><div class="line" id="LC2">&nbsp;</div><div class="line" id="LC3"><span class="nt">img</span><span class="nc">.motsu</span> <span class="p">{</span></div></pre></div>
+              
+            </td>
+          </tr>
+        </table>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="file">
+    <div class="meta public inline-gravatar" style="padding-right:45px; background:#eaeaea url('http://www.gravatar.com/avatar/465e43442fc3604b4a7ad9c55bc52066?s=20&d=http%3A%2F%2Fgithub.com%2Fimages%2Fgravatars%2Fgravatar-20.png') no-repeat scroll 98.5% 50%;">
+      <div class="info">
+        <span><a href="/35857">gist: 35857</a></span>
+        <span></span>
+      </div>
+      <div class="right">
+        <span class="date">
+          <abbr class="relatize" title="2008-12-14 19:28:59">Sun Dec 14 19:28:59 -0800 2008</abbr>
+          
+        </span>
+        <br style="clear:both;"/>
+      </div>
+    </div>
+    <div class="data syntax">
+       
+       <table cellpadding="0" cellspacing="0">
+          <tr>
+            <td>
+<pre class="line_numbers">
+<span id="LID1" rel="#L1">1</span>
+<span id="LID2" rel="#L2">2</span>
+<span id="LID3" rel="#L3">3</span>
+</pre>
+            </td>
+            <td width="100%">
+              
+              
+              
+                <div class="highlight"><pre><div class="line" id="LC1"><span class="c">// Tabs - jsactions script</span></div><div class="line" id="LC2"><span class="p">(</span><span class="kd">function</span><span class="p">(){</span></div><div class="line" id="LC3">&nbsp;&nbsp;&nbsp;&nbsp;<span class="kd">var</span> <span class="nx">html_dir</span> <span class="o">=</span> <span class="s1">&#39;/Users/youhei/Desktop/tabs/&#39;</span></div></pre></div>
+              
+            </td>
+          </tr>
+        </table>
+    </div>
+  </div>
+
+
+
+
+
+  <div class="file">
+    <div class="meta public inline-gravatar" style="padding-right:45px; background:#eaeaea url('http://www.gravatar.com/avatar/465e43442fc3604b4a7ad9c55bc52066?s=20&d=http%3A%2F%2Fgithub.com%2Fimages%2Fgravatars%2Fgravatar-20.png') no-repeat scroll 98.5% 50%;">
+      <div class="info">
+        <span><a href="/34819">gist: 34819</a></span>
+        <span></span>
+      </div>
+      <div class="right">
+        <span class="date">
+          <abbr class="relatize" title="2008-12-11 10:53:11">Thu Dec 11 10:53:11 -0800 2008</abbr>
+          
+        </span>
+        <br style="clear:both;"/>
+      </div>
+    </div>
+    <div class="data syntax">
+       
+       <table cellpadding="0" cellspacing="0">
+          <tr>
+            <td>
+<pre class="line_numbers">
+<span id="LID1" rel="#L1">1</span>
+<span id="LID2" rel="#L2">2</span>
+<span id="LID3" rel="#L3">3</span>
+</pre>
+            </td>
+            <td width="100%">
+              
+              
+              
+                <div class="highlight"><pre><div class="line" id="LC1"><span class="cp">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot; </span></div><div class="line" id="LC2"><span class="cp">                    &quot;http://www.w3.org/TR/html4/loose.dtd&quot;&gt;</span></div><div class="line" id="LC3"><span class="nt">&lt;html&gt;</span></div></pre></div>
+              
+            </td>
+          </tr>
+        </table>
+    </div>
+  </div>
+
+
 
 
 
@@ -329,128 +458,11 @@
   </div>
 
 
-
-
-
-  <div class="file">
-    <div class="meta public inline-gravatar" style="padding-right:45px; background:#eaeaea url('http://www.gravatar.com/avatar/465e43442fc3604b4a7ad9c55bc52066?s=20&d=http%3A%2F%2Fgithub.com%2Fimages%2Fgravatars%2Fgravatar-20.png') no-repeat scroll 98.5% 50%;">
-      <div class="info">
-        <span><a href="/20059">gist: 20059</a></span>
-        <span></span>
-      </div>
-      <div class="right">
-        <span class="date">
-          <abbr class="relatize" title="2008-10-27 02:05:04">Mon Oct 27 02:05:04 -0700 2008</abbr>
-          
-        </span>
-        <br style="clear:both;"/>
-      </div>
     </div>
-    <div class="data syntax">
-       
-       <table cellpadding="0" cellspacing="0">
-          <tr>
-            <td>
-<pre class="line_numbers">
-<span id="LID1" rel="#L1">1</span>
-<span id="LID2" rel="#L2">2</span>
-<span id="LID3" rel="#L3">3</span>
-</pre>
-            </td>
-            <td width="100%">
-              
-              
-              
-                <div class="highlight"><pre><div class="line" id="LC1">// ==UserScript==</div><div class="line" id="LC2">// @name           twitter faceiconize</div><div class="line" id="LC3">// @namespace      http://www.relucks.org/</div></pre></div>
-              
-            </td>
-          </tr>
-        </table>
-    </div>
-  </div>
 
-
-
-
-
-  <div class="file">
-    <div class="meta public inline-gravatar" style="padding-right:45px; background:#eaeaea url('http://www.gravatar.com/avatar/465e43442fc3604b4a7ad9c55bc52066?s=20&d=http%3A%2F%2Fgithub.com%2Fimages%2Fgravatars%2Fgravatar-20.png') no-repeat scroll 98.5% 50%;">
-      <div class="info">
-        <span><a href="/19595">gist: 19595</a></span>
-        <span></span>
-      </div>
-      <div class="right">
-        <span class="date">
-          <abbr class="relatize" title="2008-10-24 14:25:30">Fri Oct 24 14:25:30 -0700 2008</abbr>
-          
-        </span>
-        <br style="clear:both;"/>
-      </div>
-    </div>
-    <div class="data syntax">
-       
-       <table cellpadding="0" cellspacing="0">
-          <tr>
-            <td>
-<pre class="line_numbers">
-<span id="LID1" rel="#L1">1</span>
-</pre>
-            </td>
-            <td width="100%">
-              
-              
-              
-                 <div class="highlight"><pre><div class="line" id="LC1">gist.rb test</div></pre></div>
-              
-            </td>
-          </tr>
-        </table>
-    </div>
-  </div>
-
-
-
-
-
-  <div class="file">
-    <div class="meta public inline-gravatar" style="padding-right:45px; background:#eaeaea url('http://www.gravatar.com/avatar/465e43442fc3604b4a7ad9c55bc52066?s=20&d=http%3A%2F%2Fgithub.com%2Fimages%2Fgravatars%2Fgravatar-20.png') no-repeat scroll 98.5% 50%;">
-      <div class="info">
-        <span><a href="/19584">gist: 19584</a></span>
-        <span></span>
-      </div>
-      <div class="right">
-        <span class="date">
-          <abbr class="relatize" title="2008-10-24 14:14:40">Fri Oct 24 14:14:40 -0700 2008</abbr>
-          
-        </span>
-        <br style="clear:both;"/>
-      </div>
-    </div>
-    <div class="data syntax">
-       
-       <table cellpadding="0" cellspacing="0">
-          <tr>
-            <td>
-<pre class="line_numbers">
-<span id="LID1" rel="#L1">1</span>
-</pre>
-            </td>
-            <td width="100%">
-              
-              
-              
-                 <div class="highlight"><pre><div class="line" id="LC1">test</div></pre></div>
-              
-            </td>
-          </tr>
-        </table>
-    </div>
-  </div>
-
-
-  </div>
-
-  <div class="pagination"><span class="disabled">&laquo; Previous</span> <span class="current">1</span> <a href="/mine?login=swdyh&amp;page=2&amp;token=xxx" rel="next">2</a> <a href="/mine?login=swdyh&amp;page=2&amp;token=xxx" hotkey="l" rel="next">Next &raquo;</a></div>
+    <div class="pagination"><span class="disabled">&laquo; Newer</span><a href="/mine?page=2" hotkey="l">Older &raquo;</a></div>
+  
+  
 </div> <!-- gist_data -->
 
 <div id="gist_meta" style="position: relative">
@@ -477,7 +489,7 @@
             <a href="http://github.com/contact">Contact Us</a>
           </div>
           <div class="company">
-            <span id="_rrt" title="2.40823s from gist.github.com">It's</span>
+            <span id="_rrt" title="0.02216s from xc88-s00009">It's</span>
             <a href="http://logicalawesome.com/">Logical Awesome</a> | &copy;2008
           </div>
         </div>
@@ -490,6 +502,17 @@
 
       </div>
     </div>
+
+    
+        <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    var pageTracker = _gat._getTracker("UA-3769691-4");
+    pageTracker._initData();
+    pageTracker._trackPageview();
+    </script>
 
   </body>
 </html>

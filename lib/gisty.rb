@@ -38,15 +38,20 @@ class Gisty
     FileUtils.mkdir_p @dir unless @dir.exist?
   end
 
-  def page_num
-    url = GIST_URL + 'mine?' + @auth_query
+  def next_link url
     doc = Nokogiri::HTML open(url)
-    as = doc.css('.pagination a')
-    (as.size < 2) ? 1 : as[as.size - 2].inner_text.to_i
+    a = doc.at('.pagination a[hotkey="l"]')
+    a ? a['href'] : nil
   end
 
   def page_urls
-    Array.new(page_num) { |i| GIST_URL + "mine?page=#{i + 1}&#{@auth_query}" }
+    url = GIST_URL.sub(/\/$/, '')
+    path = "/mine?page=1"
+    urls = [url + path + "&#{@auth_query}"]
+    while nl = next_link(urls.last)
+      urls << url + nl + "&#{@auth_query}"
+    end
+    urls
   end
 
   def remote_ids
