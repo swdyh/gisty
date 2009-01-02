@@ -66,12 +66,6 @@ class GistyTest < Test::Unit::TestCase
     assert_nil @gisty.next_link("http://gist.github.com/mine?page=2&login=foo&token=bar")
   end
 
-  def test_page_urls
-    urls = @gisty.page_urls
-    assert_equal 2, urls.size
-    assert urls.all? { |u| u.match(/page=\d/) }
-  end
-
   def test_map_page_urls
     mapped = @gisty.map_page_urls do |u|
       assert u.match(/page=\d/)

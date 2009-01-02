@@ -44,16 +44,6 @@ class Gisty
     a ? a['href'] : nil
   end
 
-  def page_urls
-    url = GIST_URL.sub(/\/$/, '')
-    path = "/mine?page=1"
-    urls = [url + path + "&#{@auth_query}"]
-    while nl = next_link(urls.last)
-      urls << url + nl + "&#{@auth_query}"
-    end
-    urls
-  end
-
   def map_page_urls
     result = []
     base_url = GIST_URL.sub(/\/$/, '')
