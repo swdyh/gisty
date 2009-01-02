@@ -101,3 +101,18 @@ desc 'gem build'
 task :build_gem => [:gemspec] do
   sh "gem build #{NAME}.gemspec"
 end
+
+desc 'refresh fixtures'
+task :reflresh_fixtures do
+  g = Gisty.new 'tmp'
+  re = /page=\d+/
+  urls = g.map_pages do |url, page|
+    m = url.match re
+    if m
+      fn = 'mine_' + m.to_a.first.sub('=', '_') + '_login_foo_token_bar'
+      path = File.join 'test', 'fixtures', fn
+      puts "write #{path}"
+      open(path, 'w') { |f| f.write page.gsub(/(&amp;)?(login|token)=\w+(&amp;)?/, '') }
+    end
+  end
+end

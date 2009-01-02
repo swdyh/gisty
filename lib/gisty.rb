@@ -15,8 +15,8 @@ class Gisty
   class InvalidFileException < Exception
   end
 
-  def self.extract_ids url
-    doc = Nokogiri::HTML open(url)
+  def self.extract_ids str
+    doc = Nokogiri::HTML str
     doc.css('.file .info a').map { |i| i['href'].sub('/', '') }
   end
 
@@ -38,27 +38,28 @@ class Gisty
     FileUtils.mkdir_p @dir unless @dir.exist?
   end
 
-  def next_link url
-    doc = Nokogiri::HTML open(url)
+  def next_link str
+    doc = Nokogiri::HTML str
     a = doc.at('.pagination a[hotkey="l"]')
     a ? a['href'] : nil
   end
 
-  def map_page_urls
+  def map_pages
     result = []
     base_url = GIST_URL.sub(/\/$/, '')
     path = "/mine?page=1"
     loop do
       url = base_url + path + "&#{@auth_query}"
-      result << yield(url)
-      path = next_link(url)
+      page = open(url).read
+      result << yield(url, page)
+      path = next_link page
       break unless path
     end
     result
   end
 
   def remote_ids
-    map_page_urls { |u| Gisty.extract_ids u }.flatten.uniq.sort
+    map_pages { |url, page| Gisty.extract_ids page }.flatten.uniq.sort
   end
 
   def clone id

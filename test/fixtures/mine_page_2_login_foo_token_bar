@@ -453,11 +453,8 @@
 
     </div>
 
-<!--
     <div class="pagination"><a href="/mine?page=1" hotkey="h">&laquo; Newer</a><a href="/mine?page=3" hotkey="l">Older &raquo;</a></div>
--->
-    <div class="pagination"><a href="/mine?page=1" hotkey="h">&laquo; Newer</a><span>Older &raquo;</span></div>
-
+  
   
 </div> <!-- gist_data -->
 
@@ -485,7 +482,7 @@
             <a href="http://github.com/contact">Contact Us</a>
           </div>
           <div class="company">
-            <span id="_rrt" title="0.02033s from xc88-s00009">It's</span>
+            <span id="_rrt" title="0.02048s from xc88-s00011">It's</span>
             <a href="http://logicalawesome.com/">Logical Awesome</a> | &copy;2008
           </div>
         </div>
