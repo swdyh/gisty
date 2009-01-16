@@ -5,7 +5,7 @@ require 'rubygems'
 require 'nokogiri'
 
 class Gisty
-  VERSION   = '0.0.10'
+  VERSION   = '0.0.11'
   GIST_URL  = 'http://gist.github.com/'
   GISTY_URL = 'http://github.com/swdyh/gisty/tree/master'
 
@@ -70,11 +70,14 @@ class Gisty
   end
 
   def list
-    dirs = Pathname.glob(@dir.to_s + '/*')
-    dirs.map do |i|
+    dirs = Pathname.glob(@dir.to_s + '/*').map do |i|
       [i.basename.to_s,
        Pathname.glob(i.to_s + '/*').map { |i| i.basename.to_s }]
     end
+    re_pub = /^\d+$/
+    pub = dirs.select { |i| re_pub.match(i.first) }.sort_by { |i| i.first.to_i }.reverse
+    pri = dirs.select { |i| !re_pub.match(i.first) }.sort_by { |i| i.first }
+    { :public => pub, :private => pri }
   end
 
   def local_ids

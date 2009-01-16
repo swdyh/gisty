@@ -99,7 +99,7 @@ class GistyTest < Test::Unit::TestCase
     ids = @gisty.remote_ids
     @gisty.clone ids[0]
     @gisty.clone ids[1]
-    list = @gisty.list.map { |i| i.first }
+    list = @gisty.list[:public].map { |i| i.first }
     assert list.include?(ids[0])
     assert list.include?(ids[1])
   end
