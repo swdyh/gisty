@@ -161,5 +161,15 @@ class GistyTest < Test::Unit::TestCase
     path2 = File.join('test', 'fixtures', 'bar.user.js')
     @gisty.create [path1, path2]
   end
+
+  def test_post_failure
+    stub(Net::HTTP).post_form do |uri, opt|
+      Net::HTTPClientError.new 'foo', 'bar', 'baz'
+    end
+    path = File.join('test', 'fixtures', 'foo.user.js')
+    assert_raise Gisty::PostFailureException do
+      @gisty.create path
+    end
+  end
 end
 

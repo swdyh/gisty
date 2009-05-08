@@ -15,6 +15,9 @@ class Gisty
   class InvalidFileException < Exception
   end
 
+  class PostFailureException < Exception
+  end
+
   def self.extract_ids str
     doc = Nokogiri::HTML str
     doc.css('.file .info a').map { |i| i['href'].sub('/', '') }
@@ -146,8 +149,12 @@ class Gisty
 
   def post params
     url = URI.parse('http://gist.github.com/gists')
-    req = Net::HTTP.post_form(url, params)
-    req['Location']
+    res = Net::HTTP.post_form(url, params)
+    if res['Location']
+      res['Location']
+    else
+      raise PostFailureException, res.inspect
+    end
   end
 
   def build_params paths
