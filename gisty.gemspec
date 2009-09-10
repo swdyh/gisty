@@ -14,7 +14,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["README.rdoc"]
   s.files = ["README.rdoc", "Rakefile", "bin/gisty", "test/fixtures", "test/fixtures/24835", "test/fixtures/30119", "test/fixtures/bar.user.js", "test/fixtures/foo.user.js", "test/fixtures/mine_login_foo_token_bar", "test/fixtures/mine_page_1_login_foo_token_bar", "test/fixtures/mine_page_2_login_foo_token_bar", "test/fixtures/mine_page_3_login_foo_token_bar", "test/fixtures/swdyh", "test/fixtures/swdyh_page_4", "test/gisty_test.rb", "test/test_helper.rb", "lib/gisty.rb"]
   s.homepage = %q{http://github.com/swdyh/gisty/tree/master}
-  s.rdoc_options = ["--title", "gisty documentation", "--charset", "utf-8", "--opname", "index.html", "--line-numbers", "--main", "README.rdoc", "--inline-source", "--exclude", "^(examples|extras)/"]
+  s.rdoc_options = ["--title", "gisty documentation", "--charset", "utf-8", "--line-numbers", "--main", "README.rdoc", "--inline-source", "--exclude", "^(examples|extras)/"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{gisty}
   s.rubygems_version = %q{1.3.5}

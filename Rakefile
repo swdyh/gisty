@@ -25,7 +25,6 @@ CLEAN.include ['**/.*.sw?', '*.gem', '.config', '*.gemspec']
 RDOC_OPTS = [
              '--title', "#{NAME} documentation",
              "--charset", "utf-8",
-             "--opname", "index.html",
              "--line-numbers",
              "--main", "README.rdoc",
              "--inline-source",
