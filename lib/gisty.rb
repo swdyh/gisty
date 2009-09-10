@@ -35,9 +35,9 @@ class Gisty
   end
 
   def initialize path, login = nil, token = nil
-    @auth = (login && token) ? { :login => login, :token => token } : auth
-    raise UnsetAuthInfoException if @auth[:login].nil? || @auth[:token].nil?
-    @auth_query = "login=#{@auth[:login]}&token=#{@auth[:token]}"
+    @auth = (login && token) ? { 'login' => login, 'token' => token } : auth
+    raise UnsetAuthInfoException if @auth['login'].nil? || @auth['token'].nil?
+    @auth_query = "login=#{@auth['login']}&token=#{@auth['token']}"
     @dir  = Pathname.pwd.realpath.join path
     FileUtils.mkdir_p @dir unless @dir.exist?
   end
@@ -145,7 +145,7 @@ class Gisty
   def auth
     user  = `git config --global github.user`.strip
     token = `git config --global github.token`.strip
-    user.empty? ? {} : { :login => user, :token => token }
+    user.empty? ? {} : { 'login' => user, 'token' => token }
   end
 
   def post params
