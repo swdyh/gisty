@@ -6,7 +6,7 @@ require 'rubygems'
 require 'nokogiri'
 
 class Gisty
-  VERSION   = '0.0.12'
+  VERSION   = '0.0.13'
   GIST_URL  = 'http://gist.github.com/'
   GISTY_URL = 'http://github.com/swdyh/gisty/tree/master'
 
