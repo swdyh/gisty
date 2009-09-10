@@ -1,6 +1,7 @@
 require 'pathname'
 require 'net/http'
 require 'open-uri'
+require 'fileutils'
 require 'rubygems'
 require 'nokogiri'
 
