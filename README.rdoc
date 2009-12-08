@@ -10,8 +10,8 @@ yet another command line client for gist
 
 === Gem Installation
 
-	gem sources -a http://gems.github.com (you only have to do this once)
-	sudo gem install swdyh-gisty
+	gem sources -a http://gemcutter.org (you only have to do this once)
+	sudo gem install gisty
 
 set environment variable GISTY_DIR.
 example .zshrc
