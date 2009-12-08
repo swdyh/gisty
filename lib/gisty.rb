@@ -175,6 +175,7 @@ class Gisty
     params = build_params paths
     if opt[:private]
       params['private'] = 'on'
+      params['action_button'] = 'private'
     end
     post params.merge(auth)
   end
