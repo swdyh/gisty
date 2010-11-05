@@ -4,10 +4,11 @@ require 'open-uri'
 require 'fileutils'
 require 'rubygems'
 require 'nokogiri'
+require 'net/https'
 
 class Gisty
   VERSION   = '0.0.15'
-  GIST_URL  = 'http://gist.github.com/'
+  GIST_URL  = 'https://gist.github.com/'
   GISTY_URL = 'http://github.com/swdyh/gisty/tree/master'
 
   class UnsetAuthInfoException < Exception
@@ -149,9 +150,16 @@ class Gisty
   end
 
   def post params
-    url = URI.parse('http://gist.github.com/gists')
-    res = Net::HTTP.post_form(url, params)
-    if res['Location']
+    url = URI.parse('https://gist.github.com/gists')
+    req = Net::HTTP::Post.new url.path
+    req.set_form_data params
+    https = Net::HTTP.new(url.host, url.port)
+    https.use_ssl = true
+    https.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    https.verify_depth = 5
+    res = https.start {|http| http.request(req) }
+    case res
+    when Net::HTTPSuccess, Net::HTTPRedirection
       res['Location']
     else
       raise PostFailureException, res.inspect
