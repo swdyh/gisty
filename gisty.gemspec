@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gisty}
-  s.version = "0.0.15"
+  s.version = "0.0.16"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["swdyh"]
-  s.date = %q{2009-12-08}
+  s.date = %q{2010-11-05}
   s.default_executable = %q{gisty}
   s.description = %q{yet another command line client for gist}
   s.email = %q{http://mailhide.recaptcha.net/d?k=01AhB7crgrlHptVaYRD0oPwA==&c=L_iqOZrGmo6hcGpPTFg1QYnjr-WpAStyQ4Y8ShfgOHs=}
@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--title", "gisty documentation", "--charset", "utf-8", "--line-numbers", "--main", "README.rdoc", "--inline-source", "--exclude", "^(examples|extras)/"]
   s.require_paths = ["lib"]
   s.rubyforge_project = %q{gisty}
-  s.rubygems_version = %q{1.3.5}
+  s.rubygems_version = %q{1.3.7}
   s.summary = %q{yet another command line client for gist}
   s.test_files = ["test/gisty_test.rb"]
 
@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
     s.specification_version = 3
 
-    if Gem::Version.new(Gem::RubyGemsVersion) >= Gem::Version.new('1.2.0') then
+    if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<nokogiri>, [">= 1.0.0"])
     else
       s.add_dependency(%q<nokogiri>, [">= 1.0.0"])
