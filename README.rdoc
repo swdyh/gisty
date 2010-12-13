@@ -16,7 +16,7 @@ yet another command line client for gist
 set environment variable GISTY_DIR.
 example .zshrc
 
-	export GISTY_DIR="$HOME/dev/gists"    
+	export GISTY_DIR="$HOME/dev/gists"
 
 set global git config. see "Global Git Config" at https://github.com/account
 
@@ -29,7 +29,10 @@ http://github.com/swdyh/gisty/raw/master/_gisty
 
 == Features/Problems
 
-use API token with HTTP. at your own risk.
+if "certificate verify failed" is occurred, set environment variable GISTY_SSL_CA.
+example .zshrc
+
+	export GISTY_SSL_CA="/your_ca_file_path/cert.pem"
 
 == Synopsis
 
