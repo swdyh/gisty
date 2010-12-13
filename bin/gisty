@@ -95,7 +95,11 @@ end
 
 if ENV['GISTY_DIR']
   begin
-    @g = Gisty.new ENV['GISTY_DIR']
+    if ENV['GISTY_SSL_CA']
+      @g = Gisty.new ENV['GISTY_DIR'], nil, nil, :ssl_ca => ENV['GISTY_SSL_CA']
+    else
+      @g = Gisty.new ENV['GISTY_DIR']
+    end
   rescue Gisty::UnsetAuthInfoException => e
     puts 'Error: set your api token.'
     puts 'see Global Git Config at https://github.com/account'

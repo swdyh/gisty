@@ -35,12 +35,15 @@ class Gisty
     }
   end
 
-  def initialize path, login = nil, token = nil
+  def initialize path, login = nil, token = nil, opt = {}
     @auth = (login && token) ? { 'login' => login, 'token' => token } : auth
     raise UnsetAuthInfoException if @auth['login'].nil? || @auth['token'].nil?
     @auth_query = "login=#{@auth['login']}&token=#{@auth['token']}"
     @dir  = Pathname.pwd.realpath.join path
     FileUtils.mkdir_p @dir unless @dir.exist?
+    if opt[:ssl_ca]
+      @ssl_ca = opt[:ssl_ca]
+    end
   end
 
   def next_link str
@@ -157,6 +160,9 @@ class Gisty
     https.use_ssl = true
     https.verify_mode = OpenSSL::SSL::VERIFY_PEER
     https.verify_depth = 5
+    if @ssl_ca
+      https.ca_file = @ssl_ca
+    end
     res = https.start {|http| http.request(req) }
     case res
     when Net::HTTPSuccess, Net::HTTPRedirection
