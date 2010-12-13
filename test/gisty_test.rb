@@ -150,6 +150,16 @@ class GistyTest < Test::Unit::TestCase
     assert_equal "// bar.user.js\n", params['file_contents[gistfile2]']
   end
 
+  def test_ssl_ca_option
+    ca = '/ssl_ca_path/cert.pem'
+    @gisty = Gisty.new @gisty_dir, 'foo', 'bar'
+    assert_nil @gisty.instance_eval { @ssl_ca }
+
+    ca = '/ssl_ca_path/cert.pem'
+    @gisty = Gisty.new @gisty_dir, 'foo', 'bar', :ssl_ca => ca
+    assert_equal ca, @gisty.instance_eval { @ssl_ca }
+  end
+
   # def test_create
   #   stub_post_form!
   #   path = File.join('test', 'fixtures', 'foo.user.js')
