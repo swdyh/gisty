@@ -43,11 +43,11 @@ class GistyTest < Test::Unit::TestCase
     end
   end
 
-  def stub_post_form! dummy = 'http://gist.github.com/111111'
-    stub(Net::HTTP).post_form do |uri, opt|
-      { 'Location' => dummy }
-    end
-  end
+#  def stub_post_form! dummy = 'http://gist.github.com/111111'
+#    stub(Net::HTTP).post_form do |uri, opt|
+#      { 'Location' => dummy }
+#    end
+#  end
 
   def test_extract_ids
     path = File.join 'test', 'fixtures', 'swdyh_page_4'
@@ -150,26 +150,26 @@ class GistyTest < Test::Unit::TestCase
     assert_equal "// bar.user.js\n", params['file_contents[gistfile2]']
   end
 
-  def test_create
-    stub_post_form!
-    path = File.join('test', 'fixtures', 'foo.user.js')
-    @gisty.create path
-  end
+  # def test_create
+  #   stub_post_form!
+  #   path = File.join('test', 'fixtures', 'foo.user.js')
+  #   @gisty.create path
+  # end
 
-  def test_create_multi
-    path1 = File.join('test', 'fixtures', 'foo.user.js')
-    path2 = File.join('test', 'fixtures', 'bar.user.js')
-    @gisty.create [path1, path2]
-  end
+  # def test_create_multi
+  #   path1 = File.join('test', 'fixtures', 'foo.user.js')
+  #   path2 = File.join('test', 'fixtures', 'bar.user.js')
+  #   @gisty.create [path1, path2]
+  # end
 
-  def test_post_failure
-    stub(Net::HTTP).post_form do |uri, opt|
-      Net::HTTPClientError.new 'foo', 'bar', 'baz'
-    end
-    path = File.join('test', 'fixtures', 'foo.user.js')
-    assert_raise Gisty::PostFailureException do
-      @gisty.create path
-    end
-  end
+  # def test_post_failure
+  #   stub(Net::HTTP).post_form do |uri, opt|
+  #     Net::HTTPClientError.new 'foo', 'bar', 'baz'
+  #   end
+  #   path = File.join('test', 'fixtures', 'foo.user.js')
+  #   assert_raise Gisty::PostFailureException do
+  #     @gisty.create path
+  #   end
+  # end
 end
 
