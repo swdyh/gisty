@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gisty}
-  s.version = "0.0.17"
+  s.version = "0.0.18"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["swdyh"]
-  s.date = %q{2010-12-13}
+  s.date = %q{2011-01-24}
   s.default_executable = %q{gisty}
   s.description = %q{yet another command line client for gist}
   s.email = %q{http://mailhide.recaptcha.net/d?k=01AhB7crgrlHptVaYRD0oPwA==&c=L_iqOZrGmo6hcGpPTFg1QYnjr-WpAStyQ4Y8ShfgOHs=}
