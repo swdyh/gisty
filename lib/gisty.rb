@@ -41,9 +41,13 @@ class Gisty
     @auth_query = "login=#{@auth['login']}&token=#{@auth['token']}"
     @dir  = Pathname.pwd.realpath.join path
     FileUtils.mkdir_p @dir unless @dir.exist?
-    if opt[:ssl_ca]
-      @ssl_ca = opt[:ssl_ca]
-    end
+    @ssl_ca = opt[:ssl_ca]
+    @ssl_verify = case opt[:ssl_verify]
+                  when /none/i
+                    OpenSSL::SSL::VERIFY_NONE
+                  else
+                    OpenSSL::SSL::VERIFY_PEER
+                  end
   end
 
   def next_link str
@@ -158,7 +162,7 @@ class Gisty
     req.set_form_data params
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
-    https.verify_mode = OpenSSL::SSL::VERIFY_PEER
+    https.verify_mode = @ssl_verify
     https.verify_depth = 5
     if @ssl_ca
       https.ca_file = @ssl_ca
@@ -200,7 +204,7 @@ class Gisty
       req = Net::HTTP::Get.new url.request_uri
       https = Net::HTTP.new(url.host, url.port)
       https.use_ssl = true
-      https.verify_mode = OpenSSL::SSL::VERIFY_PEER
+      https.verify_mode = @ssl_verify
       https.verify_depth = 5
       https.ca_file = @ssl_ca
       res = https.start {|http| http.request(req) }
