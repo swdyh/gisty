@@ -7,7 +7,7 @@ require 'nokogiri'
 require 'net/https'
 
 class Gisty
-  VERSION   = '0.0.18'
+  VERSION   = '0.0.19'
   GIST_URL  = 'https://gist.github.com/'
   GISTY_URL = 'http://github.com/swdyh/gisty/tree/master'
 
