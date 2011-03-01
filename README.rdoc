@@ -33,6 +33,10 @@ example .zshrc
 
 	export GISTY_SSL_CA="/your_ca_file_path/cert.pem"
 
+if you do not want to verify, set GISTY_SSL_VERIFY.
+
+	export GISTY_SSL_VERIFY="NONE"
+
 == Synopsis
 
 	gisty list                          show local list.
