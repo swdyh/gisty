@@ -16,77 +16,15 @@ def cmd name, args = '', description = ''
   @help << h.ljust(40) + description + "\n"
 end
 
-cmd :about, '', 'show about gisty' do
-  puts Gisty::AA
-  puts
-  puts 'version: ' + Gisty::VERSION
-  puts 'url: ' + Gisty::GISTY_URL
-end
-
-cmd :help, '', 'show help' do
-  puts @help
-end
-
-cmd :list, '', 'show local list' do
-  list = @g.list
-  puts '- public gist -'
-  list[:public].each do |i|
-    puts "#{i[0]}: #{i[1].join(' ')}"
-  end
-  puts '- private gist -'
-  list[:private].each do |i|
-    puts "#{i[0]}: #{i[1].join(' ')}"
-  end
-end
-
-cmd :sync, '', 'sync remote gist (clone all remote gist)' do
-  @g.sync
-  puts '---'
-  puts 'sync finished.'
-end
-
-cmd :sync_delete, '', 'sync remote gist. delete local gist if remote gist was deleted'  do
-  @g.sync true
-  puts '---'
-  puts 'sync finished.'
-end
-
-cmd :pull_all, '', 'pull all gist' do
-  @g.pull_all
-  puts '---'
-  puts 'pull_all finished.'
-end
-
-cmd :post, 'file1 file2 ...', 'post new gist' do |fs|
-  if fs.size > 0
+def load_commnads path
+  Dir.glob(File.join(path, '*.rb')).each do |i|
     begin
-      url = @g.create fs
-    rescue Gisty::InvalidFileException => e
-      puts "Error: invalid file"
+      load i
     rescue Exception => e
-      puts "Error: #{e}"
-    else
-      id = url.split('/').last
-      @g.clone id
-      system "open #{url}" if /darwin/ === RUBY_PLATFORM
+      p [i, e]
     end
   end
 end
-
-cmd :private_post, 'file1 file2 ...', 'post new private gist' do |fs|
-  if fs.size > 0
-    begin
-      url = @g.create fs, :private => true
-    rescue Exception => e
-      puts "Error: #{e}"
-    else
-      system "open #{url}" if /darwin/ === RUBY_PLATFORM
-      id = url.split('/').last
-      @g.clone id
-    end
-  end
-end
-
 
 if ENV['GISTY_DIR']
   begin
@@ -102,15 +40,8 @@ else
   exit
 end
 
-# load ext commands
-ext_path = File.join(ENV['GISTY_DIR'], 'commands', '*.rb')
-Dir.glob(ext_path).each do |i|
-  begin
-    load i
-  rescue Exception => e
-    p [i, e]
-  end
-end
+load_commnads Gisty::COMMAND_PATH
+load_commnads File.join(ENV['GISTY_DIR'], 'commands')
 
 if ARGV.size == 0
   @cmds['help'].call []
@@ -122,4 +53,3 @@ else
     puts 'unknown commands.'
   end
 end
-
