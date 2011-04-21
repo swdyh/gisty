@@ -4,35 +4,30 @@ require 'rubygems'
 require 'gisty'
 
 @cmds = {}
+@help = <<-EOS
+usage:
+  gisty commands
+commands:
+EOS
 
-def cmd name
+def cmd name, args = '', description = ''
   @cmds[name.to_s] = Proc.new { |i| yield i }
+  h = "  gisty #{name} #{args}"
+  @help << h.ljust(40) + description + "\n"
 end
 
-cmd :about do
+cmd :about, '', 'show about gisty' do
   puts Gisty::AA
   puts
   puts 'version: ' + Gisty::VERSION
   puts 'url: ' + Gisty::GISTY_URL
 end
 
-cmd :help do
-  puts <<-EOS
-usage:
-  gisty commands
-commands:
-  gisty list                          show local list.
-  gisty post file1 file2 ...          post new gist.
-  gisty private_post file1 file2 ...  post new private gist.
-  gisty sync                          sync remote gist. (clone all remote gist)
-  gisty sync_delete                   sync remote gist. delete local gist if remote gist was deleted.
-  gisty pull_all                      pull all gist.
-  gisty about                         show about gisty
-  gisty help                          show help
-  EOS
+cmd :help, '', 'show help' do
+  puts @help
 end
 
-cmd :list do
+cmd :list, '', 'show local list' do
   list = @g.list
   puts '- public gist -'
   list[:public].each do |i|
@@ -44,25 +39,25 @@ cmd :list do
   end
 end
 
-cmd :sync do
+cmd :sync, '', 'sync remote gist (clone all remote gist)' do
   @g.sync
   puts '---'
   puts 'sync finished.'
 end
 
-cmd :sync_delete do
+cmd :sync_delete, '', 'sync remote gist. delete local gist if remote gist was deleted'  do
   @g.sync true
   puts '---'
   puts 'sync finished.'
 end
 
-cmd :pull_all do
+cmd :pull_all, '', 'pull all gist' do
   @g.pull_all
   puts '---'
   puts 'pull_all finished.'
 end
 
-cmd :post do |fs|
+cmd :post, 'file1 file2 ...', 'post new gist' do |fs|
   if fs.size > 0
     begin
       url = @g.create fs
@@ -78,7 +73,7 @@ cmd :post do |fs|
   end
 end
 
-cmd :private_post do |fs|
+cmd :private_post, 'file1 file2 ...', 'post new private gist' do |fs|
   if fs.size > 0
     begin
       url = @g.create fs, :private => true
