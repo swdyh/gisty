@@ -107,6 +107,16 @@ else
   exit
 end
 
+# load ext commands
+ext_path = File.join(ENV['GISTY_DIR'], 'commands', '*.rb')
+Dir.glob(ext_path).each do |i|
+  begin
+    load i
+  rescue Exception => e
+    p [i, e]
+  end
+end
+
 if ARGV.size == 0
   @cmds['help'].call []
 else
