@@ -7,7 +7,7 @@ require 'nokogiri'
 require 'net/https'
 
 class Gisty
-  VERSION   = '0.0.20'
+  VERSION   = '0.0.21'
   GIST_URL  = 'https://gist.github.com/'
   GISTY_URL = 'http://github.com/swdyh/gisty/tree/master'
   COMMAND_PATH = Pathname.new(File.join(File.dirname(__FILE__), 'commands')).realpath.to_s
