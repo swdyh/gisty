@@ -97,8 +97,8 @@ task :gemspec do
   open("#{NAME}.gemspec", 'w') { |f| f.puts spec.to_ruby }
 end
 
-desc 'gem build'
-task :build_gem => [:gemspec] do
+desc 'update gem'
+task :update => [:gemspec] do
   sh "gem build #{NAME}.gemspec"
 end
 
