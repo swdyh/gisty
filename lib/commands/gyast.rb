@@ -3,6 +3,7 @@ if /darwin/ === RUBY_PLATFORM
     now = Time.now.to_i
     file_jpg = "/tmp/#{now}.jpg"
     system "screencapture -i -t jpg \"#{file_jpg}\""
+    sleep 2
     unless File.exist? file_jpg
       exit
     end
