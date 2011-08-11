@@ -53,8 +53,8 @@ class Gisty
 
   def next_link str
     doc = Nokogiri::HTML str
-    a = doc.at('.pagination a[hotkey="l"]')
-    a ? a['href'] : nil
+    a = doc.xpath('//div[@class="pagination"]/a[last()]')[0]
+    (a && a.inner_text.match(/Older/)) ? a['href'] : nil
   end
 
   def map_pages
