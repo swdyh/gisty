@@ -8,7 +8,7 @@ require 'rake/rdoctask'
 require 'rake/contrib/rubyforgepublisher'
 require 'rake/contrib/sshpublisher'
 require 'fileutils'
-require 'lib/gisty'
+require './lib/gisty'
 include FileUtils
 
 NAME              = "gisty"
