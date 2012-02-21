@@ -57,7 +57,7 @@ class GistyTest < Test::Unit::TestCase
   end
 
   def test_extract
-    meta = Gisty.extract 'http://gist.github.com/30119'
+    meta = @gisty.extract 'http://gist.github.com/30119'
     assert_equal 'brianleroux', meta[:author]
     assert_equal 4, meta[:files].size
   end

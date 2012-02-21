@@ -26,7 +26,7 @@ class Gisty
     doc.css('.file .info a').map { |i| i['href'].sub('/', '') }
   end
 
-  def self.extract url
+  def extract url
     doc = Nokogiri::HTML read_by_url(url)
     {
       :id => url.split('/').last,
