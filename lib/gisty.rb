@@ -9,7 +9,7 @@ require 'json'
 require 'highline/import'
 
 class Gisty
-  VERSION   = '0.0.23'
+  VERSION   = '0.1.1'
   GIST_URL  = 'https://gist.github.com/'
   GISTY_URL = 'http://github.com/swdyh/gisty/tree/master'
   COMMAND_PATH = Pathname.new(File.join(File.dirname(__FILE__), 'commands')).realpath.to_s
