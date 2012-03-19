@@ -51,6 +51,8 @@ class Gisty
                   else
                     OpenSSL::SSL::VERIFY_PEER
                   end
+    @access_token = (opt[:access_token] && opt[:access_token].size > 0) ?
+      opt[:access_token] : nil
   end
 
   def next_link str
@@ -170,11 +172,15 @@ class Gisty
 
   def post params
     url = URI.parse('https://api.github.com/gists')
-    req = Net::HTTP::Post.new url.path
 
-    req.basic_auth @auth['login'], get_password
+    if @access_token
+      req = Net::HTTP::Post.new url.path + '?access_token=' + @access_token
+    else
+      req = Net::HTTP::Post.new url.path
+      req.basic_auth @auth['login'], get_password
+    end
+
     req.body = params.to_json
-
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     https.verify_mode = @ssl_verify
