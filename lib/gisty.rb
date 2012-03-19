@@ -169,9 +169,12 @@ class Gisty
   end
 
   def post params
-    url = URI.parse('https://gist.github.com/gists')
+    url = URI.parse('https://api.github.com/gists')
     req = Net::HTTP::Post.new url.path
-    req.set_form_data params
+
+    req.basic_auth @auth['login'], get_password
+    req.body = params.to_json
+
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
     https.verify_mode = @ssl_verify
@@ -193,10 +196,9 @@ class Gisty
     raise InvalidFileException if list.any?{ |i| !i.file? }
 
     params = {}
+    params['files'] = {}
     list.each_with_index do |i, index|
-      params["file_ext[gistfile#{index + 1}]"] = i.extname
-      params["file_name[gistfile#{index + 1}]"] = i.basename.to_s
-      params["file_contents[gistfile#{index + 1}]"] = IO.read(i)
+      params['files'][i.basename.to_s] = { 'content' => IO.read(i) }
     end
     params
   end
@@ -204,10 +206,11 @@ class Gisty
   def create paths, opt = { :private => false }
     params = build_params paths
     if opt[:private]
-      params['private'] = 'on'
-      params['action_button'] = 'private'
+      params['public'] = false
+    else
+      params['public'] = true
     end
-    post params.merge(auth)
+    post params
   end
 
   def read_by_url url
