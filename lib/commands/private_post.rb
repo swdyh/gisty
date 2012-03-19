@@ -5,8 +5,9 @@ cmd :private_post, 'file1 file2 ...', 'post new private gist' do |fs|
     rescue Exception => e
       puts "Error: #{e}"
     else
-      system "open #{url}" if /darwin/ === RUBY_PLATFORM
       id = url.split('/').last
+      html_url = "https://gist.github.com/#{id}"
+      system "open #{html_url}" if /darwin/ === RUBY_PLATFORM
       @g.clone id
     end
   end

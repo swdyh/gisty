@@ -8,8 +8,9 @@ cmd :post, 'file1 file2 ...', 'post new gist' do |fs|
       puts "Error: #{e}"
     else
       id = url.split('/').last
+      html_url = "https://gist.github.com/#{id}"
+      system "open #{html_url}" if /darwin/ === RUBY_PLATFORM
       @g.clone id
-      system "open #{url}" if /darwin/ === RUBY_PLATFORM
     end
   end
 end
