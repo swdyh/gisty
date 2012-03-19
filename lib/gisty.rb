@@ -159,6 +159,15 @@ class Gisty
     user.empty? ? {} : { 'login' => user, 'token' => token }
   end
 
+  def get_password
+    pw = `git config --global github.password`.strip
+    if pw.size == 0
+      ask("Enter your password: ") { |q| q.echo = false }.strip
+    else
+      pw
+    end
+  end
+
   def post params
     url = URI.parse('https://gist.github.com/gists')
     req = Net::HTTP::Post.new url.path
