@@ -17,10 +17,13 @@ example .zshrc
 
 	export GISTY_DIR="$HOME/dev/gists"
 
+open https://swdyh-gisty.heroku.com/
+
+	export GISTY_ACCESS_TOKEN=your_access_key
+
 set global git config. see "Global Git Config" at https://github.com/account
 
 	git config --global github.user your_id
-	git config --global github.token your_token
 
 if you use zsh command completion, download this file to $fpath directory.
 http://github.com/swdyh/gisty/raw/master/_gisty
