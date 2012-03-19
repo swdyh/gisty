@@ -1,10 +1,12 @@
 require 'pathname'
 require 'net/http'
+require 'net/https'
 require 'open-uri'
 require 'fileutils'
 require 'rubygems'
 require 'nokogiri'
-require 'net/https'
+require 'json'
+require 'highline/import'
 
 class Gisty
   VERSION   = '0.0.23'
