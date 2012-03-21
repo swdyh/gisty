@@ -23,6 +23,9 @@ class Gisty
   end
 
   def initialize path, login = nil, token = nil, opt = {}
+    if login.class == Hash
+      opt = login
+    end
     if opt[:access_token] && opt[:access_token].size > 0
       @access_token = opt[:access_token].strip
     else
