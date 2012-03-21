@@ -23,10 +23,12 @@ class Gisty
   end
 
   def initialize path, login = nil, token = nil, opt = {}
-    @auth = (login && token) ? { 'login' => login, 'token' => token } : auth
-    raise UnsetAuthInfoException if @auth['login'].nil? || @auth['token'].nil?
-    @auth_query = "login=#{@auth['login']}&token=#{@auth['token']}"
-    @dir  = Pathname.pwd.realpath.join path
+    if opt[:access_token] && opt[:access_token].size > 0
+      @access_token = opt[:access_token].strip
+    else
+      raise UnsetAuthInfoException
+    end
+    @dir = Pathname.pwd.realpath.join path
     FileUtils.mkdir_p @dir unless @dir.exist?
     @ssl_ca = opt[:ssl_ca]
     @ssl_verify = case opt[:ssl_verify]
@@ -35,8 +37,6 @@ class Gisty
                   else
                     OpenSSL::SSL::VERIFY_PEER
                   end
-    @access_token = (opt[:access_token] && opt[:access_token].size > 0) ?
-      opt[:access_token] : nil
   end
 
   def all_mygists
