@@ -4,7 +4,6 @@ require 'net/https'
 require 'open-uri'
 require 'fileutils'
 require 'rubygems'
-require 'nokogiri'
 require 'json'
 require 'highline/import'
 
