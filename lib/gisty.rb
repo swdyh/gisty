@@ -160,25 +160,9 @@ class Gisty
     end
   end
 
-  def get_password
-    pw = `git config --global github.password`.strip
-    if pw.size == 0
-      ask("Enter your password: ") { |q| q.echo = false }.strip
-    else
-      pw
-    end
-  end
-
   def post params
     url = URI.parse('https://api.github.com/gists')
-
-    if @access_token
-      req = Net::HTTP::Post.new url.path + '?access_token=' + @access_token
-    else
-      req = Net::HTTP::Post.new url.path
-      req.basic_auth @auth['login'], get_password
-    end
-
+    req = Net::HTTP::Post.new url.path + '?access_token=' + @access_token
     req.body = params.to_json
     https = Net::HTTP.new(url.host, url.port)
     https.use_ssl = true
