@@ -55,6 +55,44 @@ class Gisty
       opt[:access_token] : nil
   end
 
+  def all_mygists
+    r = []
+    opt = {}
+    limit = 30
+    limit.times do
+      tmp = mygists opt
+      r << tmp[:content]
+      if tmp[:link][:next]
+        opt[:url] = tmp[:link][:next]
+      else
+        break
+      end
+    end
+    r.flatten
+  end
+
+  def mygists opt = {}
+    url = opt[:url] || ('https://api.github.com/gists?access_token=%s' % @access_token)
+    open_uri_opt = {}
+    if @ssl_ca
+      open_uri_opt[:ssl_ca_cert] = @ssl_ca
+    end
+    if @ssl_verify
+      open_uri_opt[:ssl_verify_mode] = @ssl_verify
+    end
+    open(url, open_uri_opt) do |f|
+      { :content => JSON.parse(f.read), :link => Gisty.parse_link(f.meta['link']) }
+    end
+  end
+
+  def self.parse_link link
+    link.split(', ').inject({}) do |r, i|
+      url, rel = i.split '; '
+      r[rel.gsub(/^rel=/, '').gsub('"', '').to_sym] = url.gsub(/[<>]/, '')
+      r
+    end
+  end
+
   def next_link str
     doc = Nokogiri::HTML str
     a = doc.xpath('//div[@class="pagination"]/a[last()]')[0]
