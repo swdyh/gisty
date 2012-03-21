@@ -9,7 +9,7 @@ require 'json'
 class Gisty
   VERSION   = '0.1.2'
   GIST_URL  = 'https://gist.github.com/'
-  GISTY_URL = 'http://github.com/swdyh/gisty/tree/master'
+  GISTY_URL = 'https://github.com/swdyh/gisty'
   COMMAND_PATH = Pathname.new(File.join(File.dirname(__FILE__), 'commands')).realpath.to_s
 
   class UnsetAuthInfoException < Exception
