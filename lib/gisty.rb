@@ -160,12 +160,6 @@ class Gisty
     end
   end
 
-  def auth
-    user  = `git config --global github.user`.strip
-    token = `git config --global github.token`.strip
-    user.empty? ? {} : { 'login' => user, 'token' => token }
-  end
-
   def get_password
     pw = `git config --global github.password`.strip
     if pw.size == 0
