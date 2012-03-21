@@ -23,21 +23,6 @@ class Gisty
   class PostFailureException < Exception
   end
 
-  def self.extract_ids str
-    doc = Nokogiri::HTML str
-    doc.css('.file .info a').map { |i| i['href'].sub('/', '') }
-  end
-
-  def extract url
-    doc = Nokogiri::HTML read_by_url(url)
-    {
-      :id => url.split('/').last,
-      :author => doc.css('#owner a').inner_text,
-      :files => doc.css('.meta .info').map { |i| i.inner_text.strip },
-      :clone => doc.css('a[rel="#git-clone"]').inner_text,
-    }
-  end
-
   def initialize path, login = nil, token = nil, opt = {}
     @auth = (login && token) ? { 'login' => login, 'token' => token } : auth
     raise UnsetAuthInfoException if @auth['login'].nil? || @auth['token'].nil?
@@ -91,26 +76,6 @@ class Gisty
       r[rel.gsub(/^rel=/, '').gsub('"', '').to_sym] = url.gsub(/[<>]/, '')
       r
     end
-  end
-
-  def next_link str
-    doc = Nokogiri::HTML str
-    a = doc.xpath('//div[@class="pagination"]/a[last()]')[0]
-    (a && a.inner_text.match(/Older/)) ? a['href'] : nil
-  end
-
-  def map_pages
-    result = []
-    base_url = GIST_URL.sub(/\/$/, '')
-    path = "/mine?page=1"
-    loop do
-      url = base_url + path + "&#{@auth_query}"
-      page = read_by_url(url)
-      result << yield(url, page)
-      path = next_link page
-      break unless path
-    end
-    result
   end
 
   def remote_ids
@@ -255,29 +220,6 @@ class Gisty
       params['public'] = true
     end
     post params
-  end
-
-  def read_by_url url
-    if @ssl_ca
-      url = URI.parse(url)
-      req = Net::HTTP::Get.new url.request_uri
-      https = Net::HTTP.new(url.host, url.port)
-      https.use_ssl = true
-      https.verify_mode = @ssl_verify
-      https.verify_depth = 5
-      https.ca_file = @ssl_ca
-      res = https.start {|http| http.request(req) }
-      case res
-      when Net::HTTPSuccess
-        res.body
-      when Net::HTTPRedirection
-        read_by_url res['Location']
-      else
-        raise 'get failure'
-      end
-    else
-      open(url).read
-    end
   end
 
   # `figlet -f contributed/bdffonts/clb8x8.flf gisty`.gsub('#', 'm')
