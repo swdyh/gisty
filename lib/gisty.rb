@@ -114,7 +114,7 @@ class Gisty
   end
 
   def remote_ids
-    map_pages { |url, page| Gisty.extract_ids page }.flatten.uniq.sort
+    all_mygists.map { |i| i['id'] }.sort
   end
 
   def clone id
