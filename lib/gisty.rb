@@ -5,7 +5,6 @@ require 'open-uri'
 require 'fileutils'
 require 'rubygems'
 require 'json'
-require 'highline/import'
 
 class Gisty
   VERSION   = '0.1.2'
