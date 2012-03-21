@@ -4,7 +4,7 @@
 
 == Description
 
-yet another command line client for gist
+yet another command line client for gist supported API V3.
 
 == Installation
 
@@ -13,17 +13,13 @@ yet another command line client for gist
 	sudo gem install gisty
 
 set environment variable GISTY_DIR.
-example .zshrc
 
 	export GISTY_DIR="$HOME/dev/gists"
 
-open https://swdyh-gisty.heroku.com/
+get OAuth access token here. https://swdyh-gisty.heroku.com/
+set environment variable GISTY_ACCESS_TOKEN
 
 	export GISTY_ACCESS_TOKEN=your_access_key
-
-set global git config. see "Global Git Config" at https://github.com/account
-
-	git config --global github.user your_id
 
 if you use zsh command completion, download this file to $fpath directory.
 http://github.com/swdyh/gisty/raw/master/_gisty
@@ -32,7 +28,6 @@ http://github.com/swdyh/gisty/raw/master/_gisty
 == Features/Problems
 
 if "certificate verify failed" is occurred, set environment variable GISTY_SSL_CA.
-example .zshrc
 
 	export GISTY_SSL_CA="/your_ca_file_path/cert.pem"
 
