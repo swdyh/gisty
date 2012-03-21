@@ -31,8 +31,8 @@ if ENV['GISTY_DIR']
     @g = Gisty.new ENV['GISTY_DIR'], nil, nil, :ssl_ca => ENV['GISTY_SSL_CA'],
       :ssl_verify => ENV['GISTY_SSL_VERIFY'], :access_token => ENV['GISTY_ACCESS_TOKEN']
   rescue Gisty::UnsetAuthInfoException => e
-    puts 'Error: set your api token.'
-    puts 'see Global Git Config at https://github.com/account'
+    puts 'Error: OAuth access token is missing.'
+    puts 'Please get here. https://swdyh-gisty.heroku.com/'
     exit
   end
 else
