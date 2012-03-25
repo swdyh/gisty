@@ -65,13 +65,13 @@ class Gisty
   def mygists opt = {}
     url = opt[:url] || ('https://api.github.com/gists?access_token=%s' % @access_token)
     open_uri_opt = {}
-    if @ssl_ca
+    if @ssl_ca && OpenURI::Options.key?(:ssl_ca_cer)
       open_uri_opt[:ssl_ca_cert] = @ssl_ca
     end
-    if @ssl_verify
+    if @ssl_verify && OpenURI::Options.key?(:ssl_verify_mode)
       open_uri_opt[:ssl_verify_mode] = @ssl_verify
     end
-    open(url, open_uri_opt) do |f|
+    OpenURI.open_uri(url, open_uri_opt) do |f|
       { :content => JSON.parse(f.read), :link => Gisty.parse_link(f.meta['link']) }
     end
   end
