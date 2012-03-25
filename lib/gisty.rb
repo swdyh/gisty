@@ -120,35 +120,26 @@ class Gisty
   end
 
   def sync delete = false
-    remote = remote_ids
-    local  = local_ids
-
-    if delete
-      (local - remote).each do |id|
-        print "delete #{id}? [y/n]"
-        confirm = $stdin.gets.strip
-        if confirm == 'y' || confirm == 'yes'
-          puts "delete #{id}"
-          delete id
-        else
-          puts "skip #{id}"
-        end
-      end
-      ids = remote
-    else
-      ids = (remote + local).uniq
-    end
-
+    local = local_ids
     FileUtils.cd @dir do
-      ids.each do |id|
-        if File.exist? id
-#           FileUtils.cd id do
-#             c = "git pull"
-#             Kernel.system c
-#           end
-        else
-          c = "git clone git@gist.github.com:#{id}.git"
+      r = all_mygists do |gist|
+        unless File.exists? gist['id']
+          c = "git clone git@gist.github.com:#{gist['id']}.git"
           Kernel.system c
+        end
+        local -= [gist['id']]
+      end
+
+      if local.size > 0 && delete
+        local.each do |id|
+          print "delete #{id}? [y/n]"
+          confirm = $stdin.gets.strip
+          if confirm == 'y' || confirm == 'yes'
+            puts "delete #{id}"
+            delete id
+          else
+            puts "skip #{id}"
+          end
         end
       end
     end
