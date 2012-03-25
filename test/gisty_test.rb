@@ -4,7 +4,7 @@ require 'pp'
 require 'rr'
 require 'fakeweb'
 
-fixtures_path = Pathname.new(File.dirname(__FILE__)).join('fixtures', 'gists').realpath
+fixtures_path = Pathname.new(File.dirname(__FILE__)).join('fixtures').realpath
 FakeWeb.allow_net_connect = false
 stubs = [
   [
