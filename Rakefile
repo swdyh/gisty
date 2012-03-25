@@ -3,8 +3,6 @@ require 'rake'
 require 'rake/clean'
 require 'rake/testtask'
 require 'rake/packagetask'
-require 'rake/gempackagetask'
-require 'rake/rdoctask'
 require 'rake/contrib/rubyforgepublisher'
 require 'rake/contrib/sshpublisher'
 require 'fileutils'
@@ -69,26 +67,6 @@ spec = Gem::Specification.new do |s|
     Dir.glob("rails/*.rb")
 
   s.extensions = FileList["ext/**/extconf.rb"].to_a
-end
-
-
-Rake::GemPackageTask.new(spec) do |p|
-  p.need_tar = true
-  p.gem_spec = spec
-end
-
-Rake::RDocTask.new do |rdoc|
-  rdoc.rdoc_dir = 'html'
-  rdoc.options += RDOC_OPTS
-  rdoc.template = "resh"
-  #rdoc.template = "#{ENV['template']}.rb" if ENV['template']
-  if ENV['DOC_FILES']
-    rdoc.rdoc_files.include(ENV['DOC_FILES'].split(/,\s*/))
-  else
-    rdoc.rdoc_files.include('README.rdoc')
-    rdoc.rdoc_files.include('lib/**/*.rb')
-    rdoc.rdoc_files.include('ext/**/*.c')
-  end
 end
 
 desc 'Update gem spec'
