@@ -38,6 +38,8 @@ if you do not want to verify, set GISTY_SSL_VERIFY.
 
 == Synopsis
 
+commands
+
     gisty list                          show local list.
     gisty post file1 file2 ...          post new gist.
     gisty private_post file1 file2 ...  post new private gist.
