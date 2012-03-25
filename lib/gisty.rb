@@ -142,6 +142,7 @@ class Gisty
           end
         end
       end
+      open('meta.json', 'w') { |f| f.write JSON.pretty_generate(r) }
     end
   end
 
