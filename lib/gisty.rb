@@ -34,20 +34,25 @@ class Gisty
     FileUtils.mkdir_p @dir unless @dir.exist?
     @ssl_ca = opt[:ssl_ca]
     @ssl_verify = case opt[:ssl_verify]
-                  when /none/i
+                  when :none, /none/i, OpenSSL::SSL::VERIFY_NONE
                     OpenSSL::SSL::VERIFY_NONE
                   else
                     OpenSSL::SSL::VERIFY_PEER
                   end
   end
 
-  def all_mygists
+  def all_mygists &block
     r = []
     opt = {}
     limit = 30
     limit.times do
       tmp = mygists opt
       r << tmp[:content]
+
+      if block
+        tmp[:content].each {|i| block.call i }
+      end
+
       if tmp[:link][:next]
         opt[:url] = tmp[:link][:next]
       else
