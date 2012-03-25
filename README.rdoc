@@ -1,6 +1,7 @@
 
 = gisty
 
+{<img src="https://secure.travis-ci.org/swdyh/gisty.png?branch=master" alt="Build Status" />}[http://travis-ci.org/swdyh/gisty]
 
 == Description
 
