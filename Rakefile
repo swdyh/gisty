@@ -12,7 +12,8 @@ include FileUtils
 NAME              = "gisty"
 AUTHOR            = "swdyh"
 EMAIL             = "http://mailhide.recaptcha.net/d?k=01AhB7crgrlHptVaYRD0oPwA==&c=L_iqOZrGmo6hcGpPTFg1QYnjr-WpAStyQ4Y8ShfgOHs="
-DESCRIPTION       = "yet another command line client for gist"
+SUMMARY           = "yet another command line client for gist."
+DESCRIPTION       = SUMMARY + " Gisty uses Github API V3 via OAuth2."
 RUBYFORGE_PROJECT = "gisty"
 HOMEPATH          = "http://github.com/swdyh/gisty/tree/master"
 BIN_FILES         = %w( gisty )
@@ -44,7 +45,7 @@ spec = Gem::Specification.new do |s|
   # s.has_rdoc          = true
   s.extra_rdoc_files  = ["README.rdoc"]
   s.rdoc_options     += RDOC_OPTS + ['--exclude', '^(examples|extras)/']
-  s.summary           = DESCRIPTION
+  s.summary           = SUMMARY
   s.description       = DESCRIPTION
   s.author            = AUTHOR
   s.email             = EMAIL
