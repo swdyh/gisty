@@ -79,7 +79,7 @@ class Gisty
   def self.parse_link link
     link.split(', ').inject({}) do |r, i|
       url, rel = i.split '; '
-      r[rel.gsub(/^rel=/, '').gsub('"', '').to_sym] = url.gsub(/[<>]/, '')
+      r[rel.gsub(/^rel=/, '').gsub('"', '').to_sym] = url.gsub(/[<>]/, '').strip
       r
     end
   end
