@@ -1,33 +1,55 @@
 require File.dirname(__FILE__) + '/test_helper.rb'
-require "test/unit"
+require 'test/unit'
 require 'pp'
 require 'rr'
+require 'fakeweb'
+
+fixtures_path = Pathname.new(File.dirname(__FILE__)).join('fixtures', 'gists').realpath
+FakeWeb.allow_net_connect = false
+stubs = [
+  [
+    :get,
+    'https://api.github.com/gists?access_token=testaccesstoken',
+    'gists_1'
+  ],
+  [
+    :get,
+    'https://api.github.com/gists?access_token=testaccesstoken&page=2',
+    'gists_2'
+  ],
+  [
+    :get,
+    'https://api.github.com/gists?access_token=testaccesstoken&page=3',
+    'gists_3'
+  ],
+  [
+    :post,
+    'https://api.github.com/gists?access_token=testaccesstoken',
+    'gists_post'
+  ]
+]
+stubs.each do |stub|
+  head, body = IO.read(fixtures_path.join stub[2]).split("\r\n\r\n")
+  h = head.split("\r\n").slice(1..-1).inject({}) { |r, i|
+    tmp = i.split(':')
+    r[tmp[0]] = tmp.slice(1..-1).join(':')
+    r
+  }
+  h[:body] = body
+  FakeWeb.register_uri(stub[0], stub[1], h)
+end
 
 class GistyTest < Test::Unit::TestCase
   include RR::Adapters::TestUnit
 
   def setup
-    @gisty_dir = Pathname.new('tmp').realpath.join('gists')
-    @gisty = Gisty.new @gisty_dir, 'foo', 'bar'
-    stub_open_uri!
+    @gisty_dir = Pathname.new(File.dirname(__FILE__)).join('tmp')
+    @gisty = Gisty.new @gisty_dir, :access_token => 'testaccesstoken'
     stub_kernel_system!
   end
 
   def teardown
     FileUtils.rm_rf @gisty_dir
-  end
-
-  def stub_open_uri!
-    stub(OpenURI).open_uri do |uri|
-      path = url2fixture uri
-      # puts "stub open_uri: #{uri} -> #{path}"
-      open url2fixture(uri)
-    end
-  end
-
-  def url2fixture url
-    filename = url.to_s.split('/').last.gsub(/[&?=]/, '_')
-    File.join File.dirname(__FILE__), 'fixtures', filename
   end
 
   def stub_kernel_system!
@@ -43,73 +65,46 @@ class GistyTest < Test::Unit::TestCase
     end
   end
 
-#  def stub_post_form! dummy = 'http://gist.github.com/111111'
-#    stub(Net::HTTP).post_form do |uri, opt|
-#      { 'Location' => dummy }
-#    end
-#  end
-
-  def test_extract_ids
-    path = File.join 'test', 'fixtures', 'swdyh_page_4'
-    ids = Gisty.extract_ids IO.read(path)
-    assert ids.include?("6938")
-    assert ids.include?("3668")
+  def test_unset_access_token
+    assert_raise(Gisty::UnsetAuthInfoException) { Gisty.new @gisty_dir }
+    assert_raise(Gisty::UnsetAuthInfoException) { Gisty.new @gisty_dir, :access_token => '' }
   end
 
-  def test_extract
-    meta = @gisty.extract 'http://gist.github.com/30119'
-    assert_equal 'brianleroux', meta[:author]
-    assert_equal 4, meta[:files].size
+  def test_mygists
+    myg = @gisty.mygists
+    assert_equal 30, myg[:content].size
+    assert_not_nil myg[:link][:next]
+    assert_not_nil myg[:link][:last]
+
+    myg2 = @gisty.mygists :url => myg[:link][:next]
+    assert_equal 30, myg2[:content].size
+    assert_not_nil myg2[:link][:prev]
+    assert_not_nil myg2[:link][:next]
+    assert_not_nil myg2[:link][:last]
   end
 
-  def test_new
-    assert_instance_of Gisty, @gisty
+
+  def test_all_mygists
+    assert_equal 72, @gisty.all_mygists.size
   end
 
-  def test_next_link
-    path1 = url2fixture('http://gist.github.com/mine?page=1&login=foo&token=bar')
-    path2 = url2fixture('http://gist.github.com/mine?page=2&login=foo&token=bar')
-    path3 = url2fixture('http://gist.github.com/mine?page=3&login=foo&token=bar')
-    assert_equal '/mine?page=2', @gisty.next_link(IO.read(path1))
-    assert_equal '/mine?page=3', @gisty.next_link(IO.read(path2))
-    assert_nil @gisty.next_link(IO.read(path3))
-  end
-
-  def test_map_page_urls
-    mapped = @gisty.map_pages do |url, page|
-      assert url.match(/page=\d/)
-    end
-    assert_equal 3, mapped.size
-  end
-
-  def test_remote_ids
-    ids = @gisty.remote_ids
-#    assert_equal 20, ids.size
-#    assert ids.include?('7205')
-#    assert ids.include?('bc82698ab357bd8bb433')
-  end
-
-  def test_clone
-    id = @gisty.remote_ids.first
-    pn = @gisty_dir.join id
-    @gisty.clone id
+  def test_all_mygists_with_block
+    @gisty.all_mygists { |gist| assert_not_nil gist['id'] }
   end
 
   def test_list
-    ids = @gisty.remote_ids
-    @gisty.clone ids[0]
-    @gisty.clone ids[1]
-    list = @gisty.list[:public].map { |i| i.first }
-    assert list.include?(ids[0])
-    assert list.include?(ids[1])
-  end
+    FileUtils.mkdir_p @gisty_dir.join('111')
+    open(@gisty_dir.join('111').join('test.txt'), 'w') { |f| f.puts 'test' }
+    FileUtils.mkdir_p @gisty_dir.join('aaa')
+    open(@gisty_dir.join('aaa').join('test.txt'), 'w') { |f| f.puts 'test' }
+    FileUtils.mkdir_p @gisty_dir.join('commands')
+    open(@gisty_dir.join('commands').join('test.rb'), 'w') { |f| f.puts '#test' }
 
-  def test_delete
-    id = '11111'
-    pn = @gisty_dir.join id
-    FileUtils.mkdir(pn)
-    @gisty.delete id
-    assert !pn.exist?
+    list = @gisty.list
+    assert_equal 1, list[:public].size
+    assert_equal 1, list[:private].size
+    assert_equal 2, @gisty.local_gist_directories.size
+    assert_equal 2, @gisty.local_ids.size
   end
 
   def test_sync
@@ -119,22 +114,29 @@ class GistyTest < Test::Unit::TestCase
     assert ids.all? { |i| @gisty_dir.join(i).exist? }
   end
 
-#   def test_sync_delete
-#     id = '12345'
-#     assert !@gisty.remote_ids.include?(id)
-#     @gisty.clone id
-#     assert @gisty_dir.join(id).exist?
-#     @gisty.sync true
-#     assert !@gisty_dir.join(id).exist?
-#   end
+  # require stdin input y/n
+  # def test_sync_delete
+  #   id = '12345'
+  #   assert !@gisty.remote_ids.include?(id)
+  #   @gisty.clone id
+  #   assert @gisty_dir.join(id).exist?
+  #   @gisty.sync true
+  #   assert !@gisty_dir.join(id).exist?
+  # end
+
+  def test_delete
+    id = '11111'
+    pn = @gisty_dir.join id
+    @gisty.clone id
+    @gisty.delete id
+    assert !pn.exist?
+  end
 
   def test_build_params
     path = File.join('test', 'fixtures', 'foo.user.js')
     params = @gisty.build_params path
-
-    assert_equal '.js', params['file_ext[gistfile1]']
-    assert_equal 'foo.user.js', params['file_name[gistfile1]']
-    assert_equal "// foo.user.js\n", params['file_contents[gistfile1]']
+    assert_equal 'foo.user.js', params['files'].keys[0]
+    assert_equal "// foo.user.js\n", params['files']['foo.user.js']['content']
   end
 
   def test_build_params_multi
@@ -142,44 +144,50 @@ class GistyTest < Test::Unit::TestCase
     path2 = File.join('test', 'fixtures', 'bar.user.js')
     params = @gisty.build_params [path1, path2]
 
-    assert_equal '.js', params['file_ext[gistfile1]']
-    assert_equal 'foo.user.js', params['file_name[gistfile1]']
-    assert_equal "// foo.user.js\n", params['file_contents[gistfile1]']
-    assert_equal '.js', params['file_ext[gistfile2]']
-    assert_equal 'bar.user.js', params['file_name[gistfile2]']
-    assert_equal "// bar.user.js\n", params['file_contents[gistfile2]']
+    assert_not_nil params['files']['foo.user.js']
+    assert_not_nil params['files']['bar.user.js']
+
+    assert_equal "// foo.user.js\n", params['files']['foo.user.js']['content']
+    assert_equal "// bar.user.js\n", params['files']['bar.user.js']['content']
   end
 
-  def test_ssl_ca_option
+  def test_ssl_ca_option_default
     ca = '/ssl_ca_path/cert.pem'
-    @gisty = Gisty.new @gisty_dir, 'foo', 'bar'
-    assert_nil @gisty.instance_eval { @ssl_ca }
-
-    ca = '/ssl_ca_path/cert.pem'
-    @gisty = Gisty.new @gisty_dir, 'foo', 'bar', :ssl_ca => ca
-    assert_equal ca, @gisty.instance_eval { @ssl_ca }
+    g = Gisty.new @gisty_dir, :access_token => 'testaccess_token'
+    assert_nil g.instance_eval { @ssl_ca }
   end
 
-  # def test_create
-  #   stub_post_form!
-  #   path = File.join('test', 'fixtures', 'foo.user.js')
-  #   @gisty.create path
-  # end
+  def test_set_ssl_ca_option
+    ca = '/ssl_ca_path/cert.pem'
+    g = Gisty.new @gisty_dir, :access_token => 'testaccess_token', :ssl_ca => ca
+    assert_equal ca, g.instance_eval { @ssl_ca }
+  end
 
-  # def test_create_multi
-  #   path1 = File.join('test', 'fixtures', 'foo.user.js')
-  #   path2 = File.join('test', 'fixtures', 'bar.user.js')
-  #   @gisty.create [path1, path2]
-  # end
+  def test_ssl_verify_default
+    g = Gisty.new @gisty_dir, :access_token => 'testaccess_token'
+    assert_equal OpenSSL::SSL::VERIFY_PEER, g.instance_eval { @ssl_verify }
+  end
 
-  # def test_post_failure
-  #   stub(Net::HTTP).post_form do |uri, opt|
-  #     Net::HTTPClientError.new 'foo', 'bar', 'baz'
-  #   end
-  #   path = File.join('test', 'fixtures', 'foo.user.js')
-  #   assert_raise Gisty::PostFailureException do
-  #     @gisty.create path
-  #   end
-  # end
+  def test_set_ssl_verify_option
+    opt = { :access_token => 'testaccess_token' }
+
+    g = Gisty.new @gisty_dir, opt.merge(:ssl_verify => :none)
+    assert_equal OpenSSL::SSL::VERIFY_NONE, g.instance_eval { @ssl_verify }
+
+    g = Gisty.new @gisty_dir, opt.merge(:ssl_verify => 'NONE')
+    assert_equal OpenSSL::SSL::VERIFY_NONE, g.instance_eval { @ssl_verify }
+
+    g = Gisty.new @gisty_dir, opt.merge(:ssl_verify => 'None')
+    assert_equal OpenSSL::SSL::VERIFY_NONE, g.instance_eval { @ssl_verify }
+
+    g = Gisty.new @gisty_dir, opt.merge(:ssl_verify => OpenSSL::SSL::VERIFY_NONE)
+    assert_equal OpenSSL::SSL::VERIFY_NONE, g.instance_eval { @ssl_verify }
+  end
+
+  def test_create
+    # stub
+    path = File.join('test', 'fixtures', 'foo.user.js')
+    r = @gisty.create path
+    assert_not_nil r
+  end
 end
-
