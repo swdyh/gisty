@@ -96,9 +96,8 @@ class Gisty
   end
 
   def list
-    dirs = Pathname.glob(@dir.to_s + '/*').map do |i|
-      [i.basename.to_s,
-       Pathname.glob(i.to_s + '/*').map { |i| i.basename.to_s }]
+    dirs = local_gist_directories.map do |i|
+      [i.basename.to_s, Pathname.glob(i.to_s + '/*').map { |i| i.basename.to_s }]
     end
     re_pub = /^\d+$/
     pub = dirs.select { |i| re_pub.match(i.first) }.sort_by { |i| i.first.to_i }.reverse
@@ -107,8 +106,13 @@ class Gisty
   end
 
   def local_ids
-    dirs = Pathname.glob(@dir.to_s + '/*')
-    dirs.map { |i| i.basename.to_s }
+    local_gist_directories.map {|i| i.basename.to_s }
+  end
+
+  def local_gist_directories
+    Pathname.glob(@dir.to_s + '/*').select do |i|
+      i.directory? && !i.to_s.match(/^_/) && i.basename.to_s != 'commands'
+    end
   end
 
   def delete id
