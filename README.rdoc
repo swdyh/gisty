@@ -10,16 +10,16 @@ yet another command line client for gist supported API V3.
 
 === Gem Installation
 
-	sudo gem install gisty
+    sudo gem install gisty
 
 set environment variable GISTY_DIR.
 
-	export GISTY_DIR="$HOME/dev/gists"
+    export GISTY_DIR="$HOME/dev/gists"
 
 get OAuth access token here. https://swdyh-gisty.heroku.com/
 set environment variable GISTY_ACCESS_TOKEN
 
-	export GISTY_ACCESS_TOKEN=your_access_key
+    export GISTY_ACCESS_TOKEN=your_access_key
 
 if you use zsh command completion, download this file to $fpath directory.
 http://github.com/swdyh/gisty/raw/master/_gisty
@@ -29,22 +29,22 @@ http://github.com/swdyh/gisty/raw/master/_gisty
 
 if "certificate verify failed" is occurred, set environment variable GISTY_SSL_CA.
 
-	export GISTY_SSL_CA="/your_ca_file_path/cert.pem"
+    export GISTY_SSL_CA="/your_ca_file_path/cert.pem"
 
 if you do not want to verify, set GISTY_SSL_VERIFY.
 
-	export GISTY_SSL_VERIFY="NONE"
+    export GISTY_SSL_VERIFY="NONE"
 
 == Synopsis
 
-	gisty list                          show local list.
-	gisty post file1 file2 ...          post new gist.
-	gisty private_post file1 file2 ...  post new private gist.
-	gisty sync                          sync remote gist. (clone all remote gist)
-	gisty sync_delete                   sync remote gist. delete local gist if remote gist was deleted.
-	gisty pull_all                      pull all gist.
-	gisty about                         show about gisty
-	gisty help                          show help
+    gisty list                          show local list.
+    gisty post file1 file2 ...          post new gist.
+    gisty private_post file1 file2 ...  post new private gist.
+    gisty sync                          sync remote gist. (clone all remote gist)
+    gisty sync_delete                   sync remote gist. delete local gist if remote gist was deleted.
+    gisty pull_all                      pull all gist.
+    gisty about                         show about gisty
+    gisty help                          show help
 
 == Copyright
 
