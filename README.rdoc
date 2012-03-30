@@ -1,4 +1,3 @@
-
 = gisty
 
 {<img src="https://secure.travis-ci.org/swdyh/gisty.png?branch=master" alt="Build Status" />}[http://travis-ci.org/swdyh/gisty]
@@ -11,7 +10,7 @@ yet another command line client for gist supported API V3.
 
 === Gem Installation
 
-    sudo gem install gisty
+    gem install gisty
 
 set environment variable GISTY_DIR.
 
