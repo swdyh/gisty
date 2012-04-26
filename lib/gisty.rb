@@ -72,11 +72,12 @@ class Gisty
       open_uri_opt[:ssl_verify_mode] = @ssl_verify
     end
     OpenURI.open_uri(url, open_uri_opt) do |f|
-      { :content => JSON.parse(f.read), :link => Gisty.parse_link(f.meta['link']) }
+      { :content => JSON.parse(f.read), :link => Gisty.parse_link(f.meta['link']) || {} }
     end
   end
 
   def self.parse_link link
+    return nil if link.nil?
     link.split(', ').inject({}) do |r, i|
       url, rel = i.split '; '
       r[rel.gsub(/^rel=/, '').gsub('"', '').to_sym] = url.gsub(/[<>]/, '').strip
@@ -164,7 +165,9 @@ class Gisty
     url = URI.parse('https://api.github.com/gists')
     req = Net::HTTP::Post.new url.path + '?access_token=' + @access_token
     req.body = params.to_json
-    https = Net::HTTP.new(url.host, url.port)
+    proxy_uri = URI.parse(ENV['https_proxy'])
+    https = Net::HTTP::Proxy(proxy_uri.host, proxy_uri.port).new(url.host, url.port)
+
     https.use_ssl = true
     https.verify_mode = @ssl_verify
     https.verify_depth = 5
