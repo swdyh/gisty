@@ -7,7 +7,7 @@ require 'rubygems'
 require 'json'
 
 class Gisty
-  VERSION   = '0.2.0'
+  VERSION   = '0.2.1'
   GIST_URL  = 'https://gist.github.com/'
   GISTY_URL = 'https://github.com/swdyh/gisty'
   COMMAND_PATH = Pathname.new(File.join(File.dirname(__FILE__), 'commands')).realpath.to_s
