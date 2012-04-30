@@ -165,7 +165,12 @@ class Gisty
     url = URI.parse('https://api.github.com/gists')
     req = Net::HTTP::Post.new url.path + '?access_token=' + @access_token
     req.body = params.to_json
-    https = Net::HTTP.new(url.host, url.port)
+    if ENV['https_proxy']
+      proxy_uri = URI.parse(ENV['https_proxy'])
+      https = Net::HTTP::Proxy(proxy_uri.host, proxy_uri.port).new(url.host, url.port)
+    else
+      https = Net::HTTP.new(url.host, url.port)
+    end
     https.use_ssl = true
     https.verify_mode = @ssl_verify
     https.verify_depth = 5
