@@ -7,6 +7,7 @@ cmd :private_post, 'file1 file2 ...', 'post new private gist' do |fs|
     else
       id = url.split('/').last
       html_url = "https://gist.github.com/#{id}"
+      puts html_url
       system "open #{html_url}" if /darwin/ === RUBY_PLATFORM
       @g.clone id
     end
