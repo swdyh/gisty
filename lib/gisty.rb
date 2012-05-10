@@ -71,6 +71,10 @@ class Gisty
     if @ssl_verify && OpenURI::Options.key?(:ssl_verify_mode)
       open_uri_opt[:ssl_verify_mode] = @ssl_verify
     end
+    proxy = URI.parse(url.to_s).find_proxy
+    if !proxy.nil? && !proxy.user.nil?
+      open_uri_opt[:proxy_http_basic_authentication] = [proxy, proxy.user, proxy.password]
+    end
     OpenURI.open_uri(url, open_uri_opt) do |f|
       { :content => JSON.parse(f.read), :link => Gisty.parse_link(f.meta['link']) || {} }
     end
@@ -167,7 +171,11 @@ class Gisty
     req.body = params.to_json
     if ENV['https_proxy']
       proxy_uri = URI.parse(ENV['https_proxy'])
-      https = Net::HTTP::Proxy(proxy_uri.host, proxy_uri.port).new(url.host, url.port)
+      if proxy_uri.user && proxy_uri.password
+        https = Net::HTTP::Proxy(proxy_uri.host, proxy_uri.port, proxy_uri.user, proxy_uri.password).new(url.host, url.port)
+      else
+        https = Net::HTTP::Proxy(proxy_uri.host, proxy_uri.port).new(url.host, url.port)
+      end
     else
       https = Net::HTTP.new(url.host, url.port)
     end
