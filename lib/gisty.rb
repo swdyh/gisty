@@ -72,7 +72,8 @@ class Gisty
       open_uri_opt[:ssl_verify_mode] = @ssl_verify
     end
     proxy = URI.parse(url.to_s).find_proxy
-    if !proxy.nil? && !proxy.user.nil?
+
+    if proxy && proxy.user && OpenURI::Options.key?(:proxy_http_basic_authentication)
       open_uri_opt[:proxy_http_basic_authentication] = [proxy, proxy.user, proxy.password]
     end
     OpenURI.open_uri(url, open_uri_opt) do |f|
