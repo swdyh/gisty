@@ -169,6 +169,7 @@ class Gisty
   def post params
     url = URI.parse('https://api.github.com/gists')
     req = Net::HTTP::Post.new url.path + '?access_token=' + @access_token
+    req.set_content_type('application/json')
     req.body = params.to_json
     if ENV['https_proxy']
       proxy_uri = URI.parse(ENV['https_proxy'])
