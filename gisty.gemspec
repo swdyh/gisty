@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{gisty}
-  s.version = "0.2.2"
+  s.version = "0.2.3"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["swdyh"]
-  s.date = %q{2012-05-01}
+  s.date = %q{2012-06-29}
   s.default_executable = %q{gisty}
   s.description = %q{yet another command line client for gist. Gisty uses Github API V3 via OAuth2.}
   s.email = %q{http://mailhide.recaptcha.net/d?k=01AhB7crgrlHptVaYRD0oPwA==&c=L_iqOZrGmo6hcGpPTFg1QYnjr-WpAStyQ4Y8ShfgOHs=}
