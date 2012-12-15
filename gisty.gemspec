@@ -20,6 +20,10 @@ Gem::Specification.new do |s|
   s.rubygems_version = %q{1.3.7}
   s.summary = %q{yet another command line client for gist.}
   s.test_files = ["test/gisty_test.rb"]
+  s.add_development_dependency "json"
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rr"
+  s.add_development_dependency "fakeweb"
 
   if s.respond_to? :specification_version then
     current_version = Gem::Specification::CURRENT_SPECIFICATION_VERSION
