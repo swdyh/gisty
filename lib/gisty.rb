@@ -10,6 +10,7 @@ class Gisty
   VERSION   = '0.2.3'
   GIST_URL  = 'https://gist.github.com/'
   GISTY_URL = 'https://github.com/swdyh/gisty'
+  USER_AGENT = "gisty/#{VERSION} #{GISTY_URL}"
   COMMAND_PATH = Pathname.new(File.join(File.dirname(__FILE__), 'commands')).realpath.to_s
 
   class UnsetAuthInfoException < Exception
@@ -64,7 +65,7 @@ class Gisty
 
   def mygists opt = {}
     url = opt[:url] || ('https://api.github.com/gists?access_token=%s' % @access_token)
-    open_uri_opt = {}
+    open_uri_opt = { 'User-Agent' => USER_AGENT }
     if @ssl_ca && OpenURI::Options.key?(:ssl_ca_cer)
       open_uri_opt[:ssl_ca_cert] = @ssl_ca
     end
@@ -170,6 +171,7 @@ class Gisty
     url = URI.parse('https://api.github.com/gists')
     req = Net::HTTP::Post.new url.path + '?access_token=' + @access_token
     req.set_content_type('application/json')
+    req['User-Agent'] = USER_AGENT
     req.body = params.to_json
     if ENV['https_proxy']
       proxy_uri = URI.parse(ENV['https_proxy'])
