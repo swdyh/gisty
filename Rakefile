@@ -59,6 +59,10 @@ spec = Gem::Specification.new do |s|
 
   #s.add_dependency('activesupport', '>=1.3.1')
   #s.required_ruby_version = '>= 1.8.2'
+  s.add_development_dependency "json"
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rr"
+  s.add_development_dependency "fakeweb"
 
   s.files = %w(README.rdoc Rakefile) +
     Dir.glob("{bin,doc,test,lib,templates,generator,extras,website,script}/**/*") + 
