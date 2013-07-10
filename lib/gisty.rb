@@ -7,7 +7,7 @@ require 'rubygems'
 require 'json'
 
 class Gisty
-  VERSION   = '0.2.3'
+  VERSION   = '0.2.4'
   GIST_URL  = 'https://gist.github.com/'
   GISTY_URL = 'https://github.com/swdyh/gisty'
   USER_AGENT = "gisty/#{VERSION} #{GISTY_URL}"
