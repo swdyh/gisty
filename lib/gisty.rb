@@ -8,7 +8,7 @@ require 'json'
 
 class Gisty
   VERSION   = '0.2.6'
-  GIST_URL  = 'https://gist.github.com/'
+  GIST_URI  = 'gist.github.com'
   GIST_API_URL = 'https://api.github.com/gists'
   GISTY_URL = 'https://github.com/swdyh/gisty'
   USER_AGENT = "gisty/#{VERSION} #{GISTY_URL}"
@@ -42,6 +42,7 @@ class Gisty
                     OpenSSL::SSL::VERIFY_PEER
                   end
     @api_url = opt[:api_url] || GIST_API_URL
+    @base_uri = opt[:base_uri] || GIST_URI
   end
 
   def all_mygists &block
@@ -99,7 +100,7 @@ class Gisty
 
   def clone id
     FileUtils.cd @dir do
-      c = "git clone git@gist.github.com:#{id}.git"
+      c = "git clone git@#{@base_uri}:#{id}.git"
       Kernel.system c
     end
   end
@@ -133,7 +134,7 @@ class Gisty
     FileUtils.cd @dir do
       r = all_mygists do |gist|
         unless File.exists? gist['id']
-          c = "git clone git@gist.github.com:#{gist['id']}.git"
+          c = "git clone git@#{@base_uri}:#{gist['id']}.git"
           Kernel.system c
         end
         local -= [gist['id']]

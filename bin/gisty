@@ -29,7 +29,8 @@ end
 if ENV['GISTY_DIR']
   begin
     @g = Gisty.new ENV['GISTY_DIR'], nil, nil, :ssl_ca => ENV['GISTY_SSL_CA'],
-      :ssl_verify => ENV['GISTY_SSL_VERIFY'], :access_token => ENV['GISTY_ACCESS_TOKEN']
+      :ssl_verify => ENV['GISTY_SSL_VERIFY'], :access_token => ENV['GISTY_ACCESS_TOKEN'],
+      :api_url => ENV['GIST_API_URL'], :base_uri => ENV['GISTY_BASE_URI']
   rescue Gisty::UnsetAuthInfoException => e
     puts 'Error: OAuth access token is missing.'
     puts 'Please get here. https://swdyh-gisty.heroku.com/'
