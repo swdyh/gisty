@@ -17,6 +17,7 @@ set environment variable GISTY_DIR.
     export GISTY_DIR="$HOME/dev/gists"
 
 get OAuth access token here. https://swdyh-gisty.heroku.com/
+alternatively: https://github.com/settings/applications -> "Personal access tokens"
 set environment variable GISTY_ACCESS_TOKEN
 
     export GISTY_ACCESS_TOKEN=your_access_key
@@ -34,6 +35,20 @@ if "certificate verify failed" is occurred, set environment variable GISTY_SSL_C
 if you do not want to verify, set GISTY_SSL_VERIFY.
 
     export GISTY_SSL_VERIFY="NONE"
+
+
+=== GitHub Enterprise
+
+https://enterprise.github.com/help/articles/using-the-api
+
+To set the default API access URL:
+
+    export GIST_API_URL=http(s)://github.enterprise.hostname/api/v3/gists
+
+To specify the base URI reference for the clone path (e.g. git@<path>:id.git)
+
+    export GISTY_BASE_URI=github.enterprise.hostname
+
 
 == Synopsis
 
