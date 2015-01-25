@@ -17,7 +17,7 @@ def cmd name, args = '', description = ''
 end
 
 def load_commnads path
-  Dir.glob(File.join(path, '*.rb')).each do |i|
+  Dir.glob(File.join(File.expand_path(path), '*.rb')).each do |i|
     begin
       load i
     rescue Exception => e

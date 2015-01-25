@@ -32,7 +32,7 @@ class Gisty
     else
       raise UnsetAuthInfoException
     end
-    @dir = Pathname.pwd.realpath.join path
+    @dir = Pathname.pwd.realpath.join(File.expand_path(path))
     FileUtils.mkdir_p @dir unless @dir.exist?
     @ssl_ca = opt[:ssl_ca]
     @ssl_verify = case opt[:ssl_verify]
