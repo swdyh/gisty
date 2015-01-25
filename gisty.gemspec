@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = "gisty"
-  s.version = "0.2.7"
+  s.version = "0.2.8"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["swdyh"]
-  s.date = "2014-04-13"
+  s.date = "2015-01-25"
   s.description = "yet another command line client for gist. Gisty uses Github API V3 via OAuth2."
   s.email = "http://mailhide.recaptcha.net/d?k=01AhB7crgrlHptVaYRD0oPwA==&c=L_iqOZrGmo6hcGpPTFg1QYnjr-WpAStyQ4Y8ShfgOHs="
   s.executables = ["gisty"]
@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.rdoc_options = ["--title", "gisty documentation", "--charset", "utf-8", "--line-numbers", "--main", "README.rdoc", "--inline-source", "--exclude", "^(examples|extras)/"]
   s.require_paths = ["lib"]
   s.rubyforge_project = "gisty"
-  s.rubygems_version = "2.0.14"
+  s.rubygems_version = "2.0.3"
   s.summary = "yet another command line client for gist."
   s.test_files = ["test/gisty_test.rb"]
 
@@ -29,12 +29,14 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<rr>, [">= 0"])
       s.add_development_dependency(%q<fakeweb>, [">= 0"])
       s.add_development_dependency(%q<minitest>, ["~> 4.0"])
+      s.add_development_dependency(%q<test-unit>, ["~> 3.0"])
     else
       s.add_dependency(%q<json>, [">= 0"])
       s.add_dependency(%q<rake>, [">= 0"])
       s.add_dependency(%q<rr>, [">= 0"])
       s.add_dependency(%q<fakeweb>, [">= 0"])
       s.add_dependency(%q<minitest>, ["~> 4.0"])
+      s.add_dependency(%q<test-unit>, ["~> 3.0"])
     end
   else
     s.add_dependency(%q<json>, [">= 0"])
@@ -42,5 +44,6 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<rr>, [">= 0"])
     s.add_dependency(%q<fakeweb>, [">= 0"])
     s.add_dependency(%q<minitest>, ["~> 4.0"])
+    s.add_dependency(%q<test-unit>, ["~> 3.0"])
   end
 end

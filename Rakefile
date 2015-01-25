@@ -64,6 +64,7 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency "rr"
   s.add_development_dependency "fakeweb"
   s.add_development_dependency "minitest", '~> 4.0'
+  s.add_development_dependency "test-unit", '~> 3.0'
 
   s.files = %w(README.rdoc Rakefile) +
     Dir.glob("{bin,doc,test,lib,templates,generator,extras,website,script}/**/*") + 
