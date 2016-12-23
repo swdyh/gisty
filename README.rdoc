@@ -16,7 +16,7 @@ set environment variable GISTY_DIR.
 
     export GISTY_DIR="$HOME/dev/gists"
 
-get OAuth access token here. https://swdyh-gisty.heroku.com/
+get OAuth access token here. https://swdyh-gisty.herokuapp.com/
 alternatively: https://github.com/settings/applications -> "Personal access tokens"
 set environment variable GISTY_ACCESS_TOKEN
 
