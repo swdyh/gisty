@@ -129,6 +129,18 @@ class Gisty
     FileUtils.rm_rf @dir.join(id) if @dir.join(id).exist?
   end
 
+  def delete_local_all
+    local = local_ids
+    FileUtils.cd @dir do
+      if local.size > 0
+        local.each do |id|
+          puts "delete #{id}"
+          delete id
+        end
+      end
+    end
+  end
+
   def sync delete = false
     local = local_ids
     FileUtils.cd @dir do

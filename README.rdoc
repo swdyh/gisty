@@ -60,6 +60,7 @@ commands
     gisty sync                          sync remote gist. (clone all remote gist)
     gisty sync_delete                   sync remote gist. delete local gist if remote gist was deleted.
     gisty pull_all                      pull all gist.
+    gisty delete_local_all              delete all local gist.
     gisty about                         show about gisty
     gisty help                          show help
 

@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email = "http://mailhide.recaptcha.net/d?k=01AhB7crgrlHptVaYRD0oPwA==&c=L_iqOZrGmo6hcGpPTFg1QYnjr-WpAStyQ4Y8ShfgOHs="
   s.executables = ["gisty"]
   s.extra_rdoc_files = ["README.rdoc"]
-  s.files = ["README.rdoc", "Rakefile", "bin/gisty", "test/fixtures", "test/fixtures/bar.user.js", "test/fixtures/foo.user.js", "test/fixtures/gists_1", "test/fixtures/gists_2", "test/fixtures/gists_3", "test/fixtures/gists_post", "test/gisty_test.rb", "test/test_helper.rb", "lib/commands", "lib/commands/about.rb", "lib/commands/gyast.rb", "lib/commands/help.rb", "lib/commands/list.rb", "lib/commands/post.rb", "lib/commands/private_post.rb", "lib/commands/pull_all.rb", "lib/commands/sync.rb", "lib/commands/sync_delete.rb", "lib/gisty.rb"]
+  s.files = ["README.rdoc", "Rakefile", "bin/gisty", "test/fixtures", "test/fixtures/bar.user.js", "test/fixtures/foo.user.js", "test/fixtures/gists_1", "test/fixtures/gists_2", "test/fixtures/gists_3", "test/fixtures/gists_post", "test/gisty_test.rb", "test/test_helper.rb", "lib/commands", "lib/commands/about.rb", "lib/commands/delete_local_all.rb", "lib/commands/gyast.rb", "lib/commands/help.rb", "lib/commands/list.rb", "lib/commands/post.rb", "lib/commands/private_post.rb", "lib/commands/pull_all.rb", "lib/commands/sync.rb", "lib/commands/sync_delete.rb", "lib/gisty.rb"]
   s.homepage = "http://github.com/swdyh/gisty/tree/master"
   s.rdoc_options = ["--title", "gisty documentation", "--charset", "utf-8", "--line-numbers", "--main", "README.rdoc", "--inline-source", "--exclude", "^(examples|extras)/"]
   s.require_paths = ["lib"]
