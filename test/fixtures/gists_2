@@ -7,7 +7,7 @@ Status: 200 OK
 X-RateLimit-Limit: 5000
 ETag: "284ee7d56c096d748fc69808b814e09a"
 X-OAuth-Scopes: gist
-Link: <https://api.github.com/gists?access_token=testaccesstoken&page=3>; rel="next", <https://api.github.com/gists?access_token=testaccesstoken&page=3>; rel="last", <https://api.github.com/gists?access_token=testaccesstoken&page=1>; rel="first", <https://api.github.com/gists?access_token=testaccesstoken&page=1>; rel="prev"
+Link: <https://api.github.com/gists?page=3>; rel="next", <https://api.github.com/gists?page=3>; rel="last", <https://api.github.com/gists?page=1>; rel="first", <https://api.github.com/gists?page=1>; rel="prev"
 X-RateLimit-Remaining: 4992
 Content-Length: 31198
 X-Accepted-OAuth-Scopes: gist

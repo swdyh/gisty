@@ -8,7 +8,7 @@ Content-Length: 12018
 X-RateLimit-Limit: 5000
 X-RateLimit-Remaining: 4990
 ETag: "c63e34280b5765df053e029d4ad6865a"
-Link: <https://api.github.com/gists?access_token=testaccesstoken&page=1>; rel="first", <https://api.github.com/gists?access_token=testaccesstoken&page=2>; rel="prev"
+Link: <https://api.github.com/gists?page=1>; rel="first", <https://api.github.com/gists?page=2>; rel="prev"
 X-OAuth-Scopes: gist
 X-Accepted-OAuth-Scopes: gist
 

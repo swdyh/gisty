@@ -3,8 +3,8 @@ require 'rake'
 require 'rake/clean'
 require 'rake/testtask'
 require 'rake/packagetask'
-require 'rake/contrib/rubyforgepublisher'
-require 'rake/contrib/sshpublisher'
+# require 'rake/contrib/rubyforgepublisher'
+# require 'rake/contrib/sshpublisher'
 require 'fileutils'
 require './lib/gisty'
 include FileUtils
@@ -14,7 +14,7 @@ AUTHOR            = "swdyh"
 EMAIL             = "http://mailhide.recaptcha.net/d?k=01AhB7crgrlHptVaYRD0oPwA==&c=L_iqOZrGmo6hcGpPTFg1QYnjr-WpAStyQ4Y8ShfgOHs="
 SUMMARY           = "yet another command line client for gist."
 DESCRIPTION       = SUMMARY + " Gisty uses Github API V3 via OAuth2."
-RUBYFORGE_PROJECT = "gisty"
+# RUBYFORGE_PROJECT = "gisty"
 HOMEPATH          = "http://github.com/swdyh/gisty/tree/master"
 BIN_FILES         = %w( gisty )
 
@@ -51,7 +51,7 @@ spec = Gem::Specification.new do |s|
   s.email             = EMAIL
   s.homepage          = HOMEPATH
   s.executables       = BIN_FILES
-  s.rubyforge_project = RUBYFORGE_PROJECT
+  # s.rubyforge_project = RUBYFORGE_PROJECT
   s.bindir            = "bin"
   s.require_path      = "lib"
   #s.autorequire       = ""
@@ -61,7 +61,7 @@ spec = Gem::Specification.new do |s|
   #s.required_ruby_version = '>= 1.8.2'
   s.add_development_dependency "json"
   s.add_development_dependency "rake"
-  s.add_development_dependency "rr"
+  s.add_development_dependency "rr", "<= 1.1.2"
   s.add_development_dependency "fakeweb"
   s.add_development_dependency "minitest", '~> 4.0'
   s.add_development_dependency "test-unit", '~> 3.0'
