@@ -7,7 +7,7 @@ require 'rubygems'
 require 'json'
 
 class Gisty
-  VERSION   = '0.2.8'
+  VERSION   = '0.2.9'
   GIST_URI  = 'gist.github.com'
   GIST_API_URL = 'https://api.github.com/gists'
   GISTY_URL = 'https://github.com/swdyh/gisty'
@@ -67,8 +67,8 @@ class Gisty
   end
 
   def mygists opt = {}
-    url = opt[:url] || (@api_url + '?access_token=%s' % @access_token)
-    open_uri_opt = { 'User-Agent' => USER_AGENT }
+    url = opt[:url] || @api_url
+    open_uri_opt = { 'User-Agent' => USER_AGENT, 'Authorization' => "token #{@access_token}"}
     if @ssl_ca && OpenURI::Options.key?(:ssl_ca_cer)
       open_uri_opt[:ssl_ca_cert] = @ssl_ca
     end
@@ -80,6 +80,7 @@ class Gisty
     if proxy && proxy.user && OpenURI::Options.key?(:proxy_http_basic_authentication)
       open_uri_opt[:proxy_http_basic_authentication] = [proxy, proxy.user, proxy.password]
     end
+
     OpenURI.open_uri(url, open_uri_opt) do |f|
       { :content => JSON.parse(f.read), :link => Gisty.parse_link(f.meta['link']) || {} }
     end
@@ -131,8 +132,11 @@ class Gisty
 
   def sync delete = false
     local = local_ids
+    p [:cd, @dir.exist?, @dir]
     FileUtils.cd @dir do
+      p :afeter
       r = all_mygists do |gist|
+        p [:gitst, gist]
         unless File.exists? gist['id']
           c = "git clone git@#{@base_uri}:#{gist['id']}.git"
           Kernel.system c
@@ -172,9 +176,10 @@ class Gisty
 
   def post params
     url = URI.parse(@api_url)
-    req = Net::HTTP::Post.new url.path + '?access_token=' + @access_token
+    req = Net::HTTP::Post.new(url.path)
     req.set_content_type('application/json')
     req['User-Agent'] = USER_AGENT
+    req['Authorization'] = "token #{@access_token}"
     req.body = params.to_json
     if ENV['https_proxy']
       proxy_uri = URI.parse(ENV['https_proxy'])
