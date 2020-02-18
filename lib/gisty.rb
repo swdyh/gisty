@@ -132,11 +132,8 @@ class Gisty
 
   def sync delete = false
     local = local_ids
-    p [:cd, @dir.exist?, @dir]
     FileUtils.cd @dir do
-      p :afeter
       r = all_mygists do |gist|
-        p [:gitst, gist]
         unless File.exists? gist['id']
           c = "git clone git@#{@base_uri}:#{gist['id']}.git"
           Kernel.system c
