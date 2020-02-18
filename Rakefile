@@ -3,8 +3,6 @@ require 'rake'
 require 'rake/clean'
 require 'rake/testtask'
 require 'rake/packagetask'
-# require 'rake/contrib/rubyforgepublisher'
-# require 'rake/contrib/sshpublisher'
 require 'fileutils'
 require './lib/gisty'
 include FileUtils
@@ -14,7 +12,6 @@ AUTHOR            = "swdyh"
 EMAIL             = "http://mailhide.recaptcha.net/d?k=01AhB7crgrlHptVaYRD0oPwA==&c=L_iqOZrGmo6hcGpPTFg1QYnjr-WpAStyQ4Y8ShfgOHs="
 SUMMARY           = "yet another command line client for gist."
 DESCRIPTION       = SUMMARY + " Gisty uses Github API V3 via OAuth2."
-# RUBYFORGE_PROJECT = "gisty"
 HOMEPATH          = "http://github.com/swdyh/gisty/tree/master"
 BIN_FILES         = %w( gisty )
 
@@ -42,7 +39,6 @@ spec = Gem::Specification.new do |s|
   s.name              = NAME
   s.version           = VERS
   s.platform          = Gem::Platform::RUBY
-  # s.has_rdoc          = true
   s.extra_rdoc_files  = ["README.rdoc"]
   s.rdoc_options     += RDOC_OPTS + ['--exclude', '^(examples|extras)/']
   s.summary           = SUMMARY
@@ -51,15 +47,10 @@ spec = Gem::Specification.new do |s|
   s.email             = EMAIL
   s.homepage          = HOMEPATH
   s.executables       = BIN_FILES
-  # s.rubyforge_project = RUBYFORGE_PROJECT
   s.bindir            = "bin"
   s.require_path      = "lib"
-  #s.autorequire       = ""
   s.test_files        = Dir["test/*_test.rb"]
 
-  #s.add_dependency('activesupport', '>=1.3.1')
-  #s.required_ruby_version = '>= 1.8.2'
-  s.add_development_dependency "json"
   s.add_development_dependency "rake"
   s.add_development_dependency "rr", "<= 1.1.2"
   s.add_development_dependency "fakeweb"
@@ -67,7 +58,7 @@ spec = Gem::Specification.new do |s|
   s.add_development_dependency "test-unit", '~> 3.0'
 
   s.files = %w(README.rdoc Rakefile) +
-    Dir.glob("{bin,doc,test,lib,templates,generator,extras,website,script}/**/*") + 
+    Dir.glob("{bin,doc,test,lib,templates,generator,extras,website,script}/**/*") +
     Dir.glob("ext/**/*.{h,c,rb}") +
     Dir.glob("examples/**/*.rb") +
     Dir.glob("tools/*.rb") +

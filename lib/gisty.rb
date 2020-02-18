@@ -7,7 +7,7 @@ require 'rubygems'
 require 'json'
 
 class Gisty
-  VERSION   = '0.2.9'
+  VERSION   = '0.3.0'
   GIST_URI  = 'gist.github.com'
   GIST_API_URL = 'https://api.github.com/gists'
   GISTY_URL = 'https://github.com/swdyh/gisty'
@@ -227,13 +227,13 @@ class Gisty
 
   # `figlet -f contributed/bdffonts/clb8x8.flf gisty`.gsub('#', 'm')
   AA = <<-EOS
-            mm                mm             
-                              mm             
-  mmmmmm  mmmm      mmmmm   mmmmmm   mm  mm  
- mm   mm    mm     mm         mm     mm  mm  
- mm   mm    mm      mmmm      mm     mm  mm  
-  mmmmmm    mm         mm     mm      mmmmm  
-      mm  mmmmmm   mmmmm       mmm       mm  
-  mmmmm                               mmmm   
+            mm                mm
+                              mm
+  mmmmmm  mmmm      mmmmm   mmmmmm   mm  mm
+ mm   mm    mm     mm         mm     mm  mm
+ mm   mm    mm      mmmm      mm     mm  mm
+  mmmmmm    mm         mm     mm      mmmmm
+      mm  mmmmmm   mmmmm       mmm       mm
+  mmmmm                               mmmm
   EOS
 end
