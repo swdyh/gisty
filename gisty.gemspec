@@ -15,6 +15,7 @@ Gem::Specification.new do |s|
   s.extra_rdoc_files = ["README.rdoc".freeze]
   s.files = ["README.rdoc".freeze, "Rakefile".freeze, "bin/gisty".freeze, "lib/commands".freeze, "lib/commands/about.rb".freeze, "lib/commands/gyast.rb".freeze, "lib/commands/help.rb".freeze, "lib/commands/list.rb".freeze, "lib/commands/post.rb".freeze, "lib/commands/private_post.rb".freeze, "lib/commands/pull_all.rb".freeze, "lib/commands/sync.rb".freeze, "lib/commands/sync_delete.rb".freeze, "lib/gisty.rb".freeze, "test/fixtures".freeze, "test/fixtures/bar.user.js".freeze, "test/fixtures/foo.user.js".freeze, "test/fixtures/gists_1".freeze, "test/fixtures/gists_2".freeze, "test/fixtures/gists_3".freeze, "test/fixtures/gists_post".freeze, "test/gisty_test.rb".freeze, "test/test_helper.rb".freeze]
   s.homepage = "http://github.com/swdyh/gisty/tree/master".freeze
+  s.licenses = ["MIT".freeze]
   s.rdoc_options = ["--title".freeze, "gisty documentation".freeze, "--charset".freeze, "utf-8".freeze, "--line-numbers".freeze, "--main".freeze, "README.rdoc".freeze, "--inline-source".freeze, "--exclude".freeze, "^(examples|extras)/".freeze]
   s.rubygems_version = "2.5.2.3".freeze
   s.summary = "yet another command line client for gist.".freeze
@@ -24,22 +25,22 @@ Gem::Specification.new do |s|
     s.specification_version = 4
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_development_dependency(%q<rake>.freeze, [">= 0"])
+      s.add_development_dependency(%q<rake>.freeze, [">= 13.0.0", "~> 13.0"])
       s.add_development_dependency(%q<rr>.freeze, ["<= 1.1.2"])
-      s.add_development_dependency(%q<fakeweb>.freeze, [">= 0"])
+      s.add_development_dependency(%q<fakeweb>.freeze, [">= 1.3.0", "~> 1.3.0"])
       s.add_development_dependency(%q<minitest>.freeze, ["~> 4.0"])
       s.add_development_dependency(%q<test-unit>.freeze, ["~> 3.0"])
     else
-      s.add_dependency(%q<rake>.freeze, [">= 0"])
+      s.add_dependency(%q<rake>.freeze, [">= 13.0.0", "~> 13.0"])
       s.add_dependency(%q<rr>.freeze, ["<= 1.1.2"])
-      s.add_dependency(%q<fakeweb>.freeze, [">= 0"])
+      s.add_dependency(%q<fakeweb>.freeze, [">= 1.3.0", "~> 1.3.0"])
       s.add_dependency(%q<minitest>.freeze, ["~> 4.0"])
       s.add_dependency(%q<test-unit>.freeze, ["~> 3.0"])
     end
   else
-    s.add_dependency(%q<rake>.freeze, [">= 0"])
+    s.add_dependency(%q<rake>.freeze, [">= 13.0.0", "~> 13.0"])
     s.add_dependency(%q<rr>.freeze, ["<= 1.1.2"])
-    s.add_dependency(%q<fakeweb>.freeze, [">= 0"])
+    s.add_dependency(%q<fakeweb>.freeze, [">= 1.3.0", "~> 1.3.0"])
     s.add_dependency(%q<minitest>.freeze, ["~> 4.0"])
     s.add_dependency(%q<test-unit>.freeze, ["~> 3.0"])
   end

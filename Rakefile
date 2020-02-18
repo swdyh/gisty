@@ -50,10 +50,11 @@ spec = Gem::Specification.new do |s|
   s.bindir            = "bin"
   s.require_path      = "lib"
   s.test_files        = Dir["test/*_test.rb"]
+  s.license = 'MIT'
 
-  s.add_development_dependency "rake"
+  s.add_development_dependency "rake", '~> 13.0', '>= 13.0.0'
   s.add_development_dependency "rr", "<= 1.1.2"
-  s.add_development_dependency "fakeweb"
+  s.add_development_dependency "fakeweb", '~> 1.3.0', '>= 1.3.0'
   s.add_development_dependency "minitest", '~> 4.0'
   s.add_development_dependency "test-unit", '~> 3.0'
 
